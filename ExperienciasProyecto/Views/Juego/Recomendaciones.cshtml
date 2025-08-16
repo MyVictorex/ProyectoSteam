@@ -1,0 +1,80 @@
+﻿@model IEnumerable<ExperienciasProyecto.Models.RecomendacionVista>
+
+@{
+    ViewBag.Title = "Recomendaciones";
+}
+
+<!-- ====== ESTILOS PERSONALIZADOS ====== -->
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        color: #00adee;
+        margin: 40px 0 30px;
+        text-align: center;
+    }
+
+    .card {
+        background-color: #1e1e1e;
+        color: #fff;
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+        .card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(0, 173, 238, 0.2);
+        }
+
+    .card-img-left {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+        border-top-left-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+
+    .card-body h5 {
+        color: #00adee;
+    }
+
+    .card-text {
+        font-size: 0.95rem;
+        color: #ccc;
+    }
+
+    .recommendation-row {
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+</style>
+
+<!-- ====== CONTENIDO ====== -->
+<h2>⭐ Recomendaciones para ti</h2>
+
+<div class="row row-cols-1 row-cols-md-2 g-4 recommendation-row">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card shadow">
+                <div class="row g-0">
+                    <div class="col-md-4">
+                        <img src="@item.IMAGEN_URL" class="card-img-left" alt="@item.NOMBRE_JUEGO" />
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.NOMBRE_JUEGO</h5>
+                            <p class="card-text">@item.MOTIVO</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

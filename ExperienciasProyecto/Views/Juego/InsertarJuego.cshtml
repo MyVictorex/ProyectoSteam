@@ -1,0 +1,133 @@
+﻿@model ExperienciasProyecto.Models.Juego
+
+@{
+    ViewBag.Title = "Insertar Juego";
+}
+
+<!-- ========== ESTILOS PERSONALIZADOS ========== -->
+<style>
+    body {
+        background-color: #121212;
+        color: #ffffff;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .insert-container {
+        max-width: 700px;
+        margin: 50px auto;
+        background-color: #1e1e1e;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 0 25px rgba(0, 173, 238, 0.15);
+        animation: fadeIn 0.8s ease-in-out;
+    }
+
+    h2 {
+        color: #00adee;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    label {
+        font-weight: bold;
+        color: #cccccc;
+    }
+
+    .form-control {
+        background-color: #2c2c2c;
+        border: 1px solid #555;
+        color: #fff;
+        border-radius: 6px;
+    }
+
+    .form-control:focus {
+        background-color: #2c2c2c;
+        border-color: #00adee;
+        color: #fff;
+        box-shadow: 0 0 5px rgba(0, 173, 238, 0.5);
+    }
+
+    .btn-success {
+        background-color: #00ff88;
+        border: none;
+        color: #121212;
+        font-weight: bold;
+    }
+
+    .btn-success:hover {
+        background-color: #00cc6e;
+    }
+
+    .btn-secondary {
+        margin-top: 20px;
+        background-color: #444;
+        border: none;
+    }
+
+    .text-danger {
+        font-size: 0.9rem;
+    }
+
+    keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<!-- ========== FORMULARIO ========== -->
+<div class="insert-container">
+    <h2>🎮 Insertar Nuevo Juego</h2>
+
+    @using (Html.BeginForm("InsertarJuego", "Juego", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.NOMBRE)
+            @Html.EditorFor(model => model.NOMBRE, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.NOMBRE, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.DESCRIPCION)
+            @Html.TextAreaFor(model => model.DESCRIPCION, 3, 50, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DESCRIPCION, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.PRECIO)
+            @Html.EditorFor(model => model.PRECIO, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.PRECIO, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.CATEGORIA)
+            @Html.EditorFor(model => model.CATEGORIA, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CATEGORIA, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.IMAGEN_URL, "URL de la Imagen")
+            @Html.EditorFor(model => model.IMAGEN_URL, new { htmlAttributes = new { @class = "form-control", placeholder = "https://..." } })
+            @Html.ValidationMessageFor(model => model.IMAGEN_URL, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(model => model.VIDEO_URL, "URL del Video")
+            @Html.EditorFor(model => model.VIDEO_URL, new { htmlAttributes = new { @class = "form-control", placeholder = "https://..." } })
+            @Html.ValidationMessageFor(model => model.VIDEO_URL, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group text-center mt-4">
+            <input type="submit" value="✅ Guardar Juego" class="btn btn-success px-4 py-2" />
+        </div>
+    }
+
+    <div class="text-center">
+        @Html.ActionLink("← Volver al Catálogo", "Index", "Juego", null, new { @class = "btn btn-secondary" })
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

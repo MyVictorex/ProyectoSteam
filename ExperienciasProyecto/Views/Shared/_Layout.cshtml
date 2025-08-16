@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - GameVerse</title>
+
+    <!-- Estilos del template -->
+    <link href="~/Content/plantilla/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/plantilla/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/plantilla/css/style.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <!-- Navbar estilo gaming -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark py-3">
+        <div class="container">
+            <a class="navbar-brand text-warning fw-bold fs-4" href="@Url.Action("Index2", "Home")">🎮 GameVerse</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav" aria-controls="navbarNav"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        @Html.ActionLink("Inicio", "Index2", "Home", null, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Catálogo", "Index", "Juego", null, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Acerca de", "About", "Home", null, new { @class = "nav-link text-white" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Contacto", "Contact", "Home", null, new { @class = "nav-link text-white" })
+                    </li>
+
+                    @if (Session["ID_USUARIO"] == null)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Iniciar Sesión", "Login", "Juego", null, new { @class = "nav-link text-warning" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            <span class="nav-link text-white">Hola, @Session["NOMBRE_USUARIO"]</span>
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Cerrar Sesión", "Logout", "Juego", null, new { @class = "nav-link text-danger" })
+                        </li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer style="background: linear-gradient(135deg, #0f0f0f, #1c1c1c); color: #ccc; padding: 30px 0; font-family: 'Segoe UI', sans-serif; box-shadow: 0 -2px 10px rgba(0, 255, 255, 0.1); margin-top: 40px;">
+        <div class="container text-center">
+            <p class="mb-2" style="font-size: 18px;">
+                &copy; @DateTime.Now.Year <span style="color: #00ffd5; font-weight: bold;">GameVerse</span> — Todos los derechos reservados.
+            </p>
+            <p class="mb-3">Conectados por el juego 🎮</p>
+            <div style="font-size: 24px;">
+                <a href="https://facebook.com" target="_blank" style="margin: 0 10px; color: #3b5998; transition: transform 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" width="28" alt="Facebook" style="filter: drop-shadow(0 0 3px #3b5998);">
+                </a>
+                <a href="https://twitter.com" target="_blank" style="margin: 0 10px; color: #1DA1F2; transition: transform 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" width="28" alt="Twitter" style="filter: drop-shadow(0 0 3px #1DA1F2);">
+                </a>
+                <a href="https://instagram.com" target="_blank" style="margin: 0 10px; color: #E1306C; transition: transform 0.2s;">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" width="28" alt="Instagram" style="filter: drop-shadow(0 0 3px #E1306C);">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Scripts del template -->
+    <script src="~/Content/plantilla/js/jquery-3.2.1.min.js"></script>
+    <script src="~/Content/plantilla/js/bootstrap.min.js"></script>
+    <script src="~/Content/plantilla/js/main.js"></script>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            $('#gameCarousel').carousel({
+                interval: 5000,
+                ride: 'carousel',
+                pause: false
+            });
+        });
+    </script>
+
+
+</body>
+</html>

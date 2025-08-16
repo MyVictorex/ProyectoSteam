@@ -1,0 +1,131 @@
+﻿@{
+    ViewBag.Title = "Inicio";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    #gameCarousel .carousel-item {
+        height: 100vh;
+        min-height: 500px;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        transition: opacity 1s ease-in-out;
+    }
+
+    .carousel-inner {
+        height: 100%;
+    }
+
+    .carousel-caption {
+        bottom: 20%;
+        z-index: 10;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        background-color: rgba(0, 0, 0, 0.4);
+        border-radius: 50%;
+        padding: 10px;
+    }
+
+    .bg-opacity {
+        background-color: rgba(0, 0, 0, 0.6) !important;
+    }
+</style>
+
+<div id="gameCarousel" class="carousel slide carousel-fade" data-ride="carousel" data-interval="5000">
+    <div class="carousel-inner">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="height: 90vh; background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg'); background-size: cover; background-position: center;">
+            <div class="carousel-caption text-center">
+                <div class="bg-dark bg-opacity p-4 rounded animate__animated animate__fadeInUp" style="--bs-bg-opacity: 0.5;">
+                    <h2 class="display-4 text-warning text-shadow">Explora el Viejo Oeste</h2>
+                    <p class="lead text-white">Red Dead Redemption 2 te espera con su mundo abierto lleno de aventuras intensas.</p>
+                    <a href="@Url.Action("Index", "Juego")" class="btn btn-warning btn-lg mt-3">🎮 Explorar Catálogo</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-item" style="height: 90vh; background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg'); background-size: cover; background-position: center;">
+            <div class="carousel-caption text-center">
+                <div class="bg-dark bg-opacity p-4 rounded animate__animated animate__fadeInUp" style="--bs-bg-opacity: 0.5;">
+                    <h2 class="display-4 text-info text-shadow">Desafía al inframundo</h2>
+                    <p class="lead text-white">Hades combina acción frenética con una historia mitológica impresionante.</p>
+                    <a href="@Url.Action("Index", "Juego")" class="btn btn-info btn-lg mt-3">🔥 Ver Juegos</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-item" style="height: 90vh; background-image: url('https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg'); background-size: cover; background-position: center;">
+            <div class="carousel-caption text-center">
+                <div class="bg-dark bg-opacity p-4 rounded animate__animated animate__fadeInUp" style="--bs-bg-opacity: 0.5;">
+                    <h2 class="display-4 text-success text-shadow">Corre sin límites</h2>
+                    <p class="lead text-white">Forza Horizon 5 te lleva por México con gráficos de otro nivel.</p>
+                    <a href="@Url.Action("Index", "Juego")" class="btn btn-success btn-lg mt-3">🚗 Descúbrelo</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Controles del carrusel -->
+    <a class="carousel-control-prev" href="#gameCarousel" role="button" data-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+        <span class="sr-only">Anterior</span>
+    </a>
+    <a class="carousel-control-next" href="#gameCarousel" role="button" data-slide="next">
+        <span class="carousel-control-next-icon"></span>
+        <span class="sr-only">Siguiente</span>
+    </a>
+</div>
+
+<div class="text-center mt-4">
+    @if (Session["ID_USUARIO"] == null)
+    {
+        <a href="@Url.Action("Login", "Juego")" class="btn btn-outline-light btn-lg">🔐 Iniciar Sesión</a>
+    }
+</div>
+
+<!-- ==================== BENEFICIOS ==================== -->
+<section class="features-section py-5 bg-dark text-white animate__animated animate__fadeInUp">
+    <div class="container">
+        <h2 class="text-center text-warning mb-5">¿Por qué elegir <strong>GameVerse</strong>?</h2>
+        <div class="row text-center">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/820/820526.png" alt="Catálogo" width="80" />
+                    <h4 class="mt-3 text-warning">🎮 Catálogo Extenso</h4>
+                    <p>
+                        Desde los últimos títulos AAA hasta joyas ocultas del mundo indie. Explora más de 1000 juegos de acción, rol, aventura, estrategia y simulación, actualizados constantemente para que siempre tengas algo nuevo que jugar.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2920/2920244.png" alt="Recomendaciones" width="80" />
+                    <h4 class="mt-3 text-warning">🧠 Recomendaciones Inteligentes</h4>
+                    <p>
+                        Nuestro sistema basado en inteligencia artificial analiza tu perfil, preferencias y tiempo de juego para recomendarte títulos que realmente te atraparán. Porque entendemos que cada gamer es único.
+                    </p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="feature-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/565/565547.png" alt="Seguridad" width="80" />
+                    <h4 class="mt-3 text-warning">🔒 Compras 100% Seguras</h4>
+                    <p>
+                        Tus datos están protegidos con cifrado de nivel bancario. Además, ofrecemos múltiples métodos de pago y soporte técnico en tiempo real para garantizar una experiencia de compra confiable, rápida y sin complicaciones.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- Animación CSS de entrada -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" rel="stylesheet" />

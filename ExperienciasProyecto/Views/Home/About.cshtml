@@ -1,0 +1,310 @@
+﻿@{
+    ViewBag.Title = "Acerca de GameVerse";
+}
+
+<style>
+    body {
+        background-color: #121212;
+        color: #f5f5f5;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    .banner {
+        background: url('https://t4.ftcdn.net/jpg/03/70/34/37/360_F_370343704_F7vjbFeIDKalJGA23orWUEDsJlPVvQw1.jpg') no-repeat center center;
+        background-size: cover;
+        height: 380px;
+        border-radius: 12px;
+        margin-bottom: 40px;
+        position: relative;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.7);
+        overflow: hidden;
+    }
+
+        .banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.3));
+            border-radius: 12px;
+            z-index: 1;
+        }
+
+    .banner-text {
+        position: absolute;
+        top: 50%;
+        left: 10%;
+        transform: translateY(-50%);
+        z-index: 2;
+        animation: slideIn 1s ease-out;
+    }
+
+        .banner-text h1 {
+            font-size: 48px;
+            color: #00adee;
+            text-shadow: 0 0 12px #00adee;
+            margin-bottom: 10px;
+        }
+
+        .banner-text p {
+            font-size: 20px;
+            color: #f5f5f5;
+            margin-bottom: 20px;
+        }
+
+        .banner-text a {
+            background-color: #66c0f4;
+            padding: 10px 25px;
+            color: #1b1f26;
+            font-weight: bold;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+            .banner-text a:hover {
+                background-color: #4fa3d1;
+                color: #fff;
+            }
+
+    keyframes slideIn {
+        from
+
+    {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(-50%);
+    }
+    }
+</style>
+
+<div class="banner">
+    <div class="banner-text">
+        <h1>Bienvenido a <span style="color:#66c0f4;">GameVerse</span></h1>
+        <p>Donde cada juego es una nueva aventura digital</p>
+        <a href="/Juego/Index">Explorar Juegos</a>
+    </div>
+</div>
+
+
+<main class="container">
+
+    <section>
+        <h2>¿Quiénes somos?</h2>
+        <p class="lead">
+            En <strong>GameVerse</strong> amamos los videojuegos tanto como tú. Nuestra misión es ofrecerte la mejor experiencia digital para descubrir, comprar y disfrutar tus títulos favoritos.
+        </p>
+        <p>
+            Somos una plataforma 100% peruana especializada en la venta de videojuegos digitales para todas las edades y estilos. Nos destacamos por ofrecer un servicio confiable, rápido y con un catálogo en constante crecimiento. Contamos con un equipo apasionado que entiende las necesidades de la comunidad gamer.
+        </p>
+        <p>
+            Además, brindamos <strong>soporte técnico personalizado</strong> para resolver cualquier duda o inconveniente, <strong>múltiples métodos de pago</strong> (tarjetas, Yape, Plin, transferencias bancarias y más) y <strong>precios accesibles</strong> con descuentos superiores a los de otras plataformas. ¡En GameVerse, jugar más cuesta menos!
+        </p>
+    </section>
+
+    <section>
+        <h3>🎮 Lo que nos diferencia</h3>
+        <ul>
+            <li>+1000 títulos disponibles entre acción, estrategia, simulación, deportes y más.</li>
+            <li>Ofertas semanales y eventos especiales con recompensas exclusivas.</li>
+            <li>Plataforma veloz, moderna y 100% segura para todas tus compras.</li>
+            <li>Recomendaciones personalizadas gracias a inteligencia artificial.</li>
+            <li>Soporte técnico activo y atención amigable 24/7.</li>
+            <li>Descuentos especiales para usuarios registrados y promociones únicas cada mes.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h3>🧠 Nuestros valores</h3>
+        <ul>
+            <li><strong>Innovación:</strong> Usamos tecnología de punta para mejorar tu experiencia.</li>
+            <li><strong>Pasión:</strong> Somos gamers desarrollando para gamers.</li>
+            <li><strong>Comunidad:</strong> Queremos que GameVerse sea tu nuevo hogar digital.</li>
+            <li><strong>Compromiso:</strong> Estamos dedicados a ofrecerte los mejores precios del mercado.</li>
+            <li><strong>Confianza:</strong> Tu seguridad y satisfacción son nuestra prioridad.</li>
+        </ul>
+    </section>
+
+
+
+
+
+
+
+
+    <section>
+        <h3 class="text-center" style="color: #66c0f4;">👥 Nuestro equipo</h3>
+        <div class="equipo-moderna">
+            <div class="card-equipo">
+
+                <h5>Adriano</h5>
+                <p>Computación e Informática y diseño en Rhapsody</p>
+            </div>
+            <div class="card-equipo">
+
+                <h5>Jair</h5>
+                <p>Computación e Informática</p>
+            </div>
+            <div class="card-equipo">
+
+                <h5>Jordan</h5>
+                <p>Computación e Informática</p>
+            </div>
+            <div class="card-equipo">
+
+                <h5>Victor Ramos Guinea</h5>
+                <p>Computación e Informática</p>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .equipo-moderna {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 25px;
+        }
+
+        .card-equipo {
+            background-color: #1b1f26;
+            border: 1px solid #2a2a2a;
+            border-radius: 15px;
+            text-align: center;
+            width: 220px;
+            padding: 15px;
+            color: #c7d5e0;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+            .card-equipo img {
+                border-radius: 50%;
+                width: 100px;
+                height: 100px;
+                object-fit: cover;
+                margin-bottom: 10px;
+            }
+
+            .card-equipo:hover {
+                transform: scale(1.05);
+                box-shadow: 0 0 15px rgba(102, 192, 244, 0.3);
+            }
+    </style>
+
+
+    <!-- Sección nueva: Reseñas de la página -->
+    <section>
+        <h3 class="text-center" style="color: #66c0f4;">🌟 Opiniones de nuestros usuarios</h3>
+        <div class="opiniones-container">
+            <div class="opinion-card">
+                <p class="estrella">★★★★★</p>
+                <p>“Los precios son mejores que en Steam. Aproveché una oferta del 70% y todo funcionó perfecto.”</p>
+                <h6>— Camila Torres</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★★☆</p>
+                <p>“Aceptan Yape, Plin y tarjetas. Compré rápido sin complicaciones.”</p>
+                <h6>— Eduardo Méndez</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★☆☆</p>
+                <p>“Buena selección de juegos, aunque en horas punta la web se pone un poco lenta.”</p>
+                <h6>— Lucero Díaz</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★★★</p>
+                <p>“Tuve un problema con un juego y el soporte me respondió en menos de 10 minutos. ¡Excelente!”</p>
+                <h6>— Gabriel Suárez</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★★☆</p>
+                <p>“El asesor me ayudó a elegir un juego según mis gustos. Muy buen servicio humano.”</p>
+                <h6>— Renata Silva</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★★★</p>
+                <p>“GameVerse me sorprendió. Es más económico y completo que otras tiendas.”</p>
+                <h6>— Diego Ramírez</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★★★</p>
+                <p>“Los descuentos son reales. Compré 3 juegos por el precio de 1 comparado con Steam.”</p>
+                <h6>— Valentina Rojas</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★☆☆</p>
+                <p>“Tuve un error al pagar pero lo solucionaron rápido. Buen soporte.”</p>
+                <h6>— Jorge Medina</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★★★</p>
+                <p>“Me encanta la variedad y que se pueda pagar con cualquier método. Muy práctico.”</p>
+                <h6>— Nicole Pérez</h6>
+            </div>
+            <div class="opinion-card">
+                <p class="estrella">★★★★☆</p>
+                <p>“Es ideal para encontrar buenas ofertas si eres gamer con poco presupuesto.”</p>
+                <h6>— Matías López</h6>
+            </div>
+        </div>
+    </section>
+
+
+    <style>
+        .opiniones-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .opinion-card {
+            background-color: #1b1f26;
+            color: #c7d5e0;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            width: 280px;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(102, 192, 244, 0.2);
+            transition: transform 0.3s ease;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+            .opinion-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 0 20px rgba(102, 192, 244, 0.4);
+            }
+
+            .opinion-card .estrella {
+                color: #ffc107;
+                font-size: 18px;
+                margin-bottom: 5px;
+            }
+
+        keyframes fadeIn {
+            from
+
+        {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+    </style>
+
+
+
+</main>

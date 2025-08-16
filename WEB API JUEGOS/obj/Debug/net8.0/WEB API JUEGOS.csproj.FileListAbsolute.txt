@@ -1,0 +1,35 @@
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\appsettings.Development.json
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\appsettings.json
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\WEB API JUEGOS.staticwebassets.endpoints.json
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\WEB API JUEGOS.exe
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\WEB API JUEGOS.deps.json
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\WEB API JUEGOS.runtimeconfig.json
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\WEB API JUEGOS.dll
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\WEB API JUEGOS.pdb
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\Microsoft.OpenApi.dll
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+F:\ExperienciasProyecto\WEB API JUEGOS\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.csproj.AssemblyReference.cache
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\rpswa.dswa.cache.json
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.GeneratedMSBuildEditorConfig.editorconfig
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.AssemblyInfoInputs.cache
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.AssemblyInfo.cs
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.csproj.CoreCompileInputs.cache
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.MvcApplicationPartsAssemblyInfo.cs
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.MvcApplicationPartsAssemblyInfo.cache
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\rjimswa.dswa.cache.json
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\scopedcss\bundle\WEB API JUEGOS.styles.css
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\staticwebassets.build.json
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\staticwebassets.build.json.cache
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\staticwebassets.development.json
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\staticwebassets.build.endpoints.json
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API .850D8E8D.Up2Date
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.dll
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\refint\WEB API JUEGOS.dll
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.pdb
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\WEB API JUEGOS.genruntimeconfig.cache
+F:\ExperienciasProyecto\WEB API JUEGOS\obj\Debug\net8.0\ref\WEB API JUEGOS.dll

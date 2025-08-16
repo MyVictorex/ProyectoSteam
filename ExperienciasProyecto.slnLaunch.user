@@ -1,0 +1,11 @@
+[
+  {
+    "Name": "Nuevo perfil",
+    "Projects": [
+      {
+        "Path": "WEB API JUEGOS\\WEB API JUEGOS.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

@@ -1,0 +1,113 @@
+﻿@{
+    ViewBag.Title = "Contacto";
+}
+
+<style>
+    body {
+        background-color: #1b1f26;
+        color: #c7d5e0;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        color: #66c0f4;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .contact-section {
+        background-color: #2a2a2a;
+        border-radius: 15px;
+        padding: 40px;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+    }
+
+    .contact-info h4 {
+        color: #00ffd5;
+        margin-bottom: 15px;
+    }
+
+    .contact-info p a {
+        color: #66c0f4;
+        text-decoration: none;
+    }
+
+        .contact-info p a:hover {
+            text-decoration: underline;
+        }
+
+    .social-icons {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        display: flex;
+        align-items: center;
+        background-color: #1e1e1e;
+        border-radius: 12px;
+        padding: 12px;
+        transition: transform 0.3s ease;
+        box-shadow: 0 0 10px rgba(102, 192, 244, 0.2);
+    }
+
+        .social-icon:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(102, 192, 244, 0.4);
+        }
+
+        .social-icon img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .social-icon a {
+            font-size: 16px;
+            font-weight: bold;
+            color: #c7d5e0;
+            text-decoration: none;
+        }
+
+            .social-icon a:hover {
+                color: #66c0f4;
+            }
+</style>
+
+<main class="container mt-5 contact-section">
+    <h2 class="text-center">📬 Contáctanos</h2>
+    <p class="text-center text-muted">¿Tienes preguntas o necesitas soporte? ¡Estamos aquí para ayudarte!</p>
+
+    <div class="row mt-4">
+        <div class="col-md-6 contact-info">
+            <h4>📞 Atención al cliente</h4>
+            <p><strong>Teléfono:</strong> +51 947 809 085</p>
+            <p><strong>Email:</strong> <a href="mailto:soporte@gameverse.com">soporte@gameverse.com</a></p>
+            <p><strong>Dirección:</strong> Av. Gaming 123, Lima, Perú</p>
+        </div>
+        <div class="col-md-6">
+            <h4>🔗 Redes Sociales</h4>
+            <div class="social-icons">
+
+                <div class="social-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" />
+                    <a href="https://facebook.com" target="_blank">Síguenos en Facebook</a>
+                </div>
+
+                <div class="social-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" />
+                    <a href="https://twitter.com" target="_blank">Síguenos en Twitter</a>
+                </div>
+
+                <div class="social-icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Instagram" />
+                    <a href="https://instagram.com" target="_blank">Síguenos en Instagram</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</main>

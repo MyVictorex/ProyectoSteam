@@ -1,0 +1,162 @@
+﻿@model ExperienciasProyecto.Models.Juego
+
+@{
+    ViewBag.Title = "Detalles del Juego";
+
+    string youtubeId = "";
+    if (!string.IsNullOrEmpty(Model.VIDEO_URL) && Model.VIDEO_URL.Contains("youtube.com"))
+    {
+        var partes = Model.VIDEO_URL.Split('=');
+        if (partes.Length > 1)
+        {
+            youtubeId = partes[1];
+        }
+    }
+}
+
+<style>
+    body {
+        background-color: #0f0f0f;
+        color: #fff;
+        font-family: 'Segoe UI', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        padding: 40px 20px;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .juego-detalle {
+        display: flex;
+        flex-wrap: wrap;
+        background: linear-gradient(135deg, #1f1f1f, #2b2b2b);
+        border-radius: 12px;
+        box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+
+    .juego-detalle:hover {
+        transform: scale(1.01);
+    }
+
+    .juego-imagen {
+        flex: 1 1 350px;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .juego-imagen img {
+        width: 100%;
+        max-width: 320px;
+        height: 320px;
+        border-radius: 10px;
+        object-fit: cover;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+        transition: transform 0.4s ease;
+    }
+
+    .juego-imagen img:hover {
+        transform: scale(1.05);
+    }
+
+    .juego-info {
+        flex: 2 1 400px;
+        padding: 20px 30px;
+    }
+
+    .juego-info h2 {
+        font-size: 32px;
+        color: #00ffd5;
+        margin-bottom: 15px;
+        text-shadow: 0 0 5px #00ffd5;
+    }
+
+    .juego-info p {
+        font-size: 17px;
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+
+    .juego-info strong {
+        color: #a1e4f7;
+    }
+
+    .btn-compra {
+        background: linear-gradient(45deg, #00ffd5, #00adee);
+        color: #000;
+        border: none;
+        padding: 12px 20px;
+        font-weight: bold;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
+        transition: background 0.3s ease, transform 0.3s ease;
+    }
+
+    .btn-compra:hover {
+        background: linear-gradient(45deg, #00adee, #00ffd5);
+        transform: scale(1.05);
+    }
+
+    .juego-video {
+        margin-top: 40px;
+        text-align: center;
+        animation: fadeInUp 1s ease-out;
+    }
+
+    .juego-video iframe,
+    .juego-video video {
+        width: 100%;
+        max-width: 800px;
+        height: 450px;
+        border-radius: 12px;
+        box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+    }
+
+    keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(50px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="container">
+    <div class="juego-detalle">
+        <div class="juego-imagen">
+            <img src="@Model.IMAGEN_URL" alt="@Model.NOMBRE" />
+        </div>
+
+        <div class="juego-info">
+            <h2>@Model.NOMBRE</h2>
+            <p>@Model.DESCRIPCION</p>
+            <p><strong>Categoría:</strong> @Model.CATEGORIA</p>
+            <p><strong>Precio:</strong> S/. @Model.PRECIO.ToString("0.00")</p>
+
+            @Html.ActionLink("🛒 Agregar al carrito", "AgregarAlCarrito", "Juego", new { id = Model.ID_JUEGO }, new { @class = "btn btn-compra mt-3" })
+        </div>
+    </div>
+
+    @if (!string.IsNullOrEmpty(Model.VIDEO_URL))
+    {
+        <div class="juego-video">
+            @if (Model.VIDEO_URL.Contains("youtube.com"))
+            {
+                <iframe src="https://www.youtube.com/embed/@youtubeId"
+                        frameborder="0" allowfullscreen></iframe>
+            }
+            else
+            {
+                <video controls>
+                    <source src="@Model.VIDEO_URL" type="video/mp4" />
+                    Tu navegador no soporta la reproducción de video.
+                </video>
+            }
+        </div>
+    }
+</div>

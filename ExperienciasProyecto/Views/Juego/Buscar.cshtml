@@ -1,0 +1,145 @@
+﻿@model IEnumerable<ExperienciasProyecto.Models.Juego>
+
+@{
+    ViewBag.Title = "Resultados de Búsqueda";
+}
+
+<style>
+    body {
+        background-color: #1b1b1b;
+        color: #fff;
+        font-family: 'Segoe UI', sans-serif;
+    }
+
+    h2 {
+        color: #00adee;
+        margin-top: 20px;
+        text-align: center;
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .btn-back {
+        display: inline-block;
+        margin: 20px;
+        color: #00adee;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s ease;
+    }
+
+    .btn-back:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .card-game {
+        background-color: #252525;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 10px rgba(0, 173, 238, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        animation: fadeInUp 0.6s ease both;
+    }
+
+    .card-game:hover {
+        transform: scale(1.03);
+        box-shadow: 0 6px 20px rgba(0, 173, 238, 0.4);
+    }
+
+    .card-img-top {
+        height: 180px;
+        object-fit: cover;
+        border-bottom: 2px solid #00adee;
+        cursor: pointer;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .card-title {
+        color: #00ffd5;
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+    }
+
+    .card-text {
+        color: #ccc;
+        font-size: 0.95rem;
+    }
+
+    .badge-category {
+        background-color: #00adee;
+        font-size: 0.8rem;
+    }
+
+    keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
+
+<div class="container">
+    <h2>🔍 Resultados de Búsqueda</h2>
+
+    <div class="text-center mb-4">
+        <a href="@Url.Action("Index", "Juego")" class="btn-back">← Volver al Catálogo</a>
+    </div>
+
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">No se encontraron juegos que coincidan con tu búsqueda.</div>
+    }
+    else
+    {
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            @foreach (var item in Model)
+            {
+                <div class="col">
+                    <div class="card card-game h-100">
+                        <img src="@item.IMAGEN_URL" class="card-img-top" alt="@item.NOMBRE" onclick="previewImage('@item.IMAGEN_URL')" />
+
+                        <div class="card-body">
+                            <h5 class="card-title">@item.NOMBRE</h5>
+                            <p class="card-text">@item.DESCRIPCION</p>
+                            <p class="card-text">
+                                <strong>S/. @item.PRECIO.ToString("0.00")</strong> |
+                                <span class="badge badge-category">@item.CATEGORIA</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+</div>
+
+<!-- Modal para vista previa -->
+<div class="modal fade" id="modalPreview" tabindex="-1" aria-labelledby="modalPreviewLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content bg-dark text-white">
+            <div class="modal-header border-secondary">
+                <h5 class="modal-title">Vista previa</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="previewImage" src="" alt="Vista previa" class="img-fluid rounded shadow" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function previewImage(src) {
+            document.getElementById("previewImage").src = src;
+            var modal = new bootstrap.Modal(document.getElementById("modalPreview"));
+            modal.show();
+        }
+    </script>
+}
