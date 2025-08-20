@@ -3,28 +3,48 @@
   "WorkspaceRootPath": "F:\\ExperienciasProyecto\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|f:\\experienciasproyecto\\experienciasproyecto\\views\\juego\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|solutionrelative:experienciasproyecto\\views\\juego\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|F:\\ExperienciasProyecto\\experienciasproyecto\\views\\home\\index2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|solutionrelative:experienciasproyecto\\views\\home\\index2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\data\\repositoriocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\data\\repositoriocompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\data\\repositoriojuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\data\\repositoriojuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\data\\repositoriousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\data\\repositoriousuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\data\\contrato\\ijuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\data\\contrato\\ijuego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|F:\\ExperienciasProyecto\\experienciasproyecto\\controllers\\juegocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|solutionrelative:experienciasproyecto\\controllers\\juegocontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|F:\\ExperienciasProyecto\\experienciasproyecto\\views\\juego\\insertarjuego.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|solutionrelative:experienciasproyecto\\views\\juego\\insertarjuego.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\data\\contrato\\icompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\data\\contrato\\icompra.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|F:\\ExperienciasProyecto\\experienciasproyecto\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|solutionrelative:experienciasproyecto\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\data\\contrato\\iusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\data\\contrato\\iusuario.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|F:\\ExperienciasProyecto\\experienciasproyecto\\models\\juego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|solutionrelative:experienciasproyecto\\models\\juego.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|F:\\ExperienciasProyecto\\experienciasproyecto\\views\\juego\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{CF461699-54AF-4A87-9E04-AFC70AB43C63}|ExperienciasProyecto\\ExperienciasProyecto.csproj|solutionrelative:experienciasproyecto\\views\\juego\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|f:\\experienciasproyecto\\web api juegos\\web api juegos.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{76DDAEEC-4845-414B-813C-43185F8F3619}|WEB API JUEGOS\\WEB API JUEGOS.csproj|solutionrelative:web api juegos\\web api juegos.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
   "DocumentGroupContainers": [
@@ -39,6 +59,135 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\appsettings.json",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\appsettings.json",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\appsettings.json",
+              "RelativeToolTip": "WEB API JUEGOS\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-20T05:25:11.757Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Program.cs",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\Program.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Program.cs",
+              "RelativeToolTip": "WEB API JUEGOS\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:22:34.376Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RepositorioUsuario.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\RepositorioUsuario.cs",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\Data\\RepositorioUsuario.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\RepositorioUsuario.cs",
+              "RelativeToolTip": "WEB API JUEGOS\\Data\\RepositorioUsuario.cs",
+              "ViewState": "AgIAAEwAAAAAAAAAAAAowF4AAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:10:37.395Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RepositorioJuego.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\RepositorioJuego.cs",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\Data\\RepositorioJuego.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\RepositorioJuego.cs",
+              "RelativeToolTip": "WEB API JUEGOS\\Data\\RepositorioJuego.cs",
+              "ViewState": "AgIAAAgAAAAAAAAAAAAIwBYAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:10:13.944Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RepositorioCompra.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\RepositorioCompra.cs",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\Data\\RepositorioCompra.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\RepositorioCompra.cs",
+              "RelativeToolTip": "WEB API JUEGOS\\Data\\RepositorioCompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACkAAABKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:09:45.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "JuegoController.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Controllers\\JuegoController.cs",
+              "RelativeDocumentMoniker": "ExperienciasProyecto\\Controllers\\JuegoController.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Controllers\\JuegoController.cs",
+              "RelativeToolTip": "ExperienciasProyecto\\Controllers\\JuegoController.cs",
+              "ViewState": "AgIAAIgBAAAAAAAAAAAYwFkCAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-29T22:30:51.079Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ICompra.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\Contrato\\ICompra.cs",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\Data\\Contrato\\ICompra.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\Contrato\\ICompra.cs",
+              "RelativeToolTip": "WEB API JUEGOS\\Data\\Contrato\\ICompra.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAABJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:03:46.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IJuego.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\Contrato\\IJuego.cs",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\Data\\Contrato\\IJuego.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\Contrato\\IJuego.cs",
+              "RelativeToolTip": "WEB API JUEGOS\\Data\\Contrato\\IJuego.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:03:31.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IUsuario.cs",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\Contrato\\IUsuario.cs",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\Data\\Contrato\\IUsuario.cs",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\Data\\Contrato\\IUsuario.cs",
+              "RelativeToolTip": "WEB API JUEGOS\\Data\\Contrato\\IUsuario.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-20T04:03:12.487Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "WEB API JUEGOS.csproj",
+              "DocumentMoniker": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\WEB API JUEGOS.csproj",
+              "RelativeDocumentMoniker": "WEB API JUEGOS\\WEB API JUEGOS.csproj",
+              "ToolTip": "F:\\ExperienciasProyecto\\WEB API JUEGOS\\WEB API JUEGOS.csproj",
+              "RelativeToolTip": "WEB API JUEGOS\\WEB API JUEGOS.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-08-20T03:58:40.22Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Index.cshtml",
               "DocumentMoniker": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Views\\Juego\\Index.cshtml",
               "RelativeDocumentMoniker": "ExperienciasProyecto\\Views\\Juego\\Index.cshtml",
@@ -46,68 +195,7 @@
               "RelativeToolTip": "ExperienciasProyecto\\Views\\Juego\\Index.cshtml",
               "ViewState": "AgIAAMsAAAAAAAAAAAAtwNUAAABaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-30T01:13:11.275Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Index2.cshtml",
-              "DocumentMoniker": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Views\\Home\\Index2.cshtml",
-              "RelativeDocumentMoniker": "ExperienciasProyecto\\Views\\Home\\Index2.cshtml",
-              "ToolTip": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Views\\Home\\Index2.cshtml",
-              "RelativeToolTip": "ExperienciasProyecto\\Views\\Home\\Index2.cshtml",
-              "ViewState": "AgIAACsAAAAAAAAAAAAqwH8AAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-29T22:48:05.189Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "ExperienciasProyecto\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "ExperienciasProyecto\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAADMAAAAAAAAAAAAqwFcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-29T22:46:30.698Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Juego.cs",
-              "DocumentMoniker": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Models\\Juego.cs",
-              "RelativeDocumentMoniker": "ExperienciasProyecto\\Models\\Juego.cs",
-              "ToolTip": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Models\\Juego.cs",
-              "RelativeToolTip": "ExperienciasProyecto\\Models\\Juego.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAA5wCgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-29T22:41:54.802Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "InsertarJuego.cshtml",
-              "DocumentMoniker": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Views\\Juego\\InsertarJuego.cshtml",
-              "RelativeDocumentMoniker": "ExperienciasProyecto\\Views\\Juego\\InsertarJuego.cshtml",
-              "ToolTip": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Views\\Juego\\InsertarJuego.cshtml",
-              "RelativeToolTip": "ExperienciasProyecto\\Views\\Juego\\InsertarJuego.cshtml",
-              "ViewState": "AgIAAFkAAAAAAAAAAAAqwHcAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2025-06-29T22:33:24.933Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "JuegoController.cs",
-              "DocumentMoniker": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Controllers\\JuegoController.cs",
-              "RelativeDocumentMoniker": "ExperienciasProyecto\\Controllers\\JuegoController.cs",
-              "ToolTip": "F:\\ExperienciasProyecto\\ExperienciasProyecto\\Controllers\\JuegoController.cs",
-              "RelativeToolTip": "ExperienciasProyecto\\Controllers\\JuegoController.cs",
-              "ViewState": "AgIAALECAAAAAAAAAAAewDUBAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-06-29T22:30:51.079Z"
+              "WhenOpened": "2025-06-30T01:13:11.275Z"
             }
           ]
         }
