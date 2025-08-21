@@ -23,7 +23,7 @@ namespace WEB_API_JUEGOS.Data
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM JUEGO WHERE ACTIVO = 1", cn); // solo activos
+                SqlCommand cmd = new SqlCommand("SP_LISTAR_JUEGOS", cn); // solo activos
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -226,16 +226,6 @@ namespace WEB_API_JUEGOS.Data
 
             return lista;
         }
-
-
-
-
-
-
-
-
-
-
 
         public void InsertarRecomendacion(int idUsuario, int idJuego, string motivo)
         {

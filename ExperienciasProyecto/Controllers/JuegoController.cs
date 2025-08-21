@@ -252,7 +252,7 @@ namespace ExperienciasProyecto.Controllers
                 ConfigurationManager.ConnectionStrings["cadena"].ConnectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM JUEGO WHERE ACTIVO = 1", cn); // solo activos
+                SqlCommand cmd = new SqlCommand("SP_LISTAR_JUEGOS", cn); // solo activos
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
