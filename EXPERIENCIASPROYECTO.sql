@@ -21,6 +21,65 @@ VALUES
 ('Plataformas'),
 ('RPG');
 
+
+
+
+CREATE OR ALTER PROCEDURE SP_PERFIL_USUARIO 
+    @ID_USUARIO INT
+AS
+BEGIN
+    -- 1. Obtener los datos principales del usuario
+    SELECT
+        ID_USUARIO,
+        NOMBRE,
+        CORREO,
+        ROL
+    FROM
+        USUARIO
+    WHERE
+        ID_USUARIO = @ID_USUARIO;
+
+    -- 2. Obtener el historial de compras
+    SELECT
+        C.ID_COMPRA,
+        C.FECHA,
+        J.NOMBRE AS NOMBRE_JUEGO,
+        J.IMAGEN_URL,
+        DC.PRECIO_UNITARIO
+    FROM
+        COMPRA C
+    INNER JOIN
+        DETALLE_COMPRA DC ON C.ID_COMPRA = DC.ID_COMPRA
+    INNER JOIN
+        JUEGO J ON DC.ID_JUEGO = J.ID_JUEGO
+    WHERE
+        C.ID_USUARIO = @ID_USUARIO
+    ORDER BY
+        C.FECHA DESC;
+
+    -- 3. Obtener el total gastado
+    SELECT
+        SUM(TOTAL) AS TOTAL_GASTADO
+    FROM
+        COMPRA
+    WHERE
+        ID_USUARIO = @ID_USUARIO;
+
+    -- 4. Obtener las recomendaciones
+    SELECT
+        R.ID_RECOMENDACION,
+        J.NOMBRE,
+        ISNULL(R.MOTIVO, 'Recomendado por tu compra') AS MOTIVO,
+        J.IMAGEN_URL
+    FROM
+        RECOMENDACION R
+    INNER JOIN
+        JUEGO J ON R.ID_JUEGO = J.ID_JUEGO
+    WHERE
+        R.ID_USUARIO = @ID_USUARIO;
+END
+
+
 CREATE OR ALTER PROCEDURE sp_ObtenerJuegosParaVista
 AS
 BEGIN
