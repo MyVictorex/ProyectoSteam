@@ -1,8 +1,8 @@
 ﻿using System.Data;
-
-using WEB_API_JUEGOS.Data.Contrato;
 using ExperienciasProyecto.Models;
 using Microsoft.Data.SqlClient;
+using WEB_API_JUEGOS.Data.Contrato;
+using WEB_API_JUEGOS.Models.Dto;
 
 namespace WEB_API_JUEGOS.Data
 {
@@ -115,7 +115,7 @@ namespace WEB_API_JUEGOS.Data
             return juegos;
         }
 
-        public void InsertarJuegoBD(Juego juego)
+        public void InsertarJuegoBD(JuegoRegistroDto juego)
         {
             if (juego == null)
                 throw new ArgumentNullException(nameof(juego), "El objeto juego no puede ser nulo.");
@@ -141,7 +141,7 @@ namespace WEB_API_JUEGOS.Data
                     cmd.Parameters.AddWithValue("@NOMBRE", juego.NOMBRE);
                     cmd.Parameters.AddWithValue("@DESCRIPCION", juego.DESCRIPCION);
                     cmd.Parameters.AddWithValue("@PRECIO", juego.PRECIO);
-                    cmd.Parameters.AddWithValue("@CATEGORIA", juego.ID_CATEGORIA); // <-- Cambiado
+                    cmd.Parameters.AddWithValue("@ID_CATEGORIA", juego.ID_CATEGORIA); // <-- Cambiado
                     cmd.Parameters.AddWithValue("@IMAGEN_URL", juego.IMAGEN_URL ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@VIDEO_URL", juego.VIDEO_URL ?? (object)DBNull.Value);
 
@@ -154,7 +154,7 @@ namespace WEB_API_JUEGOS.Data
             }
         }
 
-        public void EditarJuegoBD(Juego juego)
+        public void EditarJuegoBD(JuegoRegistroDto juego)
         {
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
@@ -168,11 +168,14 @@ namespace WEB_API_JUEGOS.Data
                 cmd.Parameters.AddWithValue("@NOMBRE", juego.NOMBRE);
                 cmd.Parameters.AddWithValue("@DESCRIPCION", juego.DESCRIPCION);
                 cmd.Parameters.AddWithValue("@PRECIO", juego.PRECIO);
-                cmd.Parameters.AddWithValue("@CATEGORIA", juego.ID_CATEGORIA); // <-- Cambiado
+                cmd.Parameters.AddWithValue("@ID_CATEGORIA", juego.ID_CATEGORIA);
+                cmd.Parameters.AddWithValue("@IMAGEN_URL", juego.IMAGEN_URL ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@VIDEO_URL", juego.VIDEO_URL ?? (object)DBNull.Value);
 
                 cmd.ExecuteNonQuery();
             }
         }
+
 
 
         public void DesactivarJuegoBD(int id)

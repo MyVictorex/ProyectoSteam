@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Mvc;
 using ExperienciasProyecto.Models;
 using Newtonsoft.Json;
+using WEB_API_JUEGOS.Models.Dto;
 
 namespace ExperienciasProyecto.Controllers
 {
@@ -61,7 +62,7 @@ namespace ExperienciasProyecto.Controllers
             }
         }
 
-        private async Task<bool> insertarJuegoAsync(Juego juego)
+        private async Task<bool> insertarJuegoAsync(JuegoRegistroDto juego)
         {
             using (var clienteHttp = new HttpClient { BaseAddress = new Uri(apiUrl) })
             {
@@ -71,7 +72,7 @@ namespace ExperienciasProyecto.Controllers
             }
         }
 
-        private async Task<bool> editarJuegoAsync(Juego juego)
+        private async Task<bool> editarJuegoAsync(JuegoRegistroDto juego)
         {
             using (var clienteHttp = new HttpClient { BaseAddress = new Uri(apiUrl) })
             {
@@ -197,7 +198,7 @@ namespace ExperienciasProyecto.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> InsertarJuego(Juego juego)
+        public async Task<ActionResult> InsertarJuego(JuegoRegistroDto juego)
         {
             bool ok = await insertarJuegoAsync(juego);
             TempData["mensaje"] = ok
@@ -219,7 +220,7 @@ namespace ExperienciasProyecto.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> EditarJuego(Juego juego)
+        public async Task<ActionResult> EditarJuego(JuegoRegistroDto juego)
         {
             bool ok = await editarJuegoAsync(juego);
             TempData["mensaje"] = ok

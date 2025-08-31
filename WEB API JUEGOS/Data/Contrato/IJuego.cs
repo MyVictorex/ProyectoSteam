@@ -1,4 +1,5 @@
 ﻿using ExperienciasProyecto.Models;
+using WEB_API_JUEGOS.Models.Dto;
 
 namespace WEB_API_JUEGOS.Data.Contrato
 {
@@ -7,8 +8,8 @@ namespace WEB_API_JUEGOS.Data.Contrato
         IEnumerable<Juego> BuscarJuegos(string busqueda);
         IEnumerable<RecomendacionVista> VerRecomendaciones(int idUsuario);
         IEnumerable<Juego> ObtenerJuegos();
-        void InsertarJuegoBD(Juego juego);
-        void EditarJuegoBD(Juego juego);
+        void InsertarJuegoBD(JuegoRegistroDto juego);
+        void EditarJuegoBD(JuegoRegistroDto juego);
         void DesactivarJuegoBD(int id);
         void ActivarjuegoBD(int id);
         List<Juego> ObtenerTodosLosJuegos();

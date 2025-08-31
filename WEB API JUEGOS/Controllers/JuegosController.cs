@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using WEB_API_JUEGOS.Data.Contrato;
+using WEB_API_JUEGOS.Models.Dto;
 
 namespace WEB_API_JUEGOS.Controllers
 {
@@ -51,7 +52,7 @@ namespace WEB_API_JUEGOS.Controllers
 
         // POST api/juegos
         [HttpPost]
-        public IActionResult Insertar(Juego juego)
+        public IActionResult Insertar(JuegoRegistroDto juego)
         {
             _juegoRepo.InsertarJuegoBD(juego);
             return Ok(new { mensaje = "Juego insertado correctamente" });
@@ -59,7 +60,7 @@ namespace WEB_API_JUEGOS.Controllers
 
         // PUT api/juegos
         [HttpPut]
-        public IActionResult Editar(Juego juego)
+        public IActionResult Editar(JuegoRegistroDto juego)
         {
             _juegoRepo.EditarJuegoBD(juego);
             return Ok(new { mensaje = "Juego editado correctamente" });

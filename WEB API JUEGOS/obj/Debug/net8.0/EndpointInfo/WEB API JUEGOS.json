@@ -67,17 +67,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Juego"
+                "$ref": "#/components/schemas/JuegoRegistroDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Juego"
+                "$ref": "#/components/schemas/JuegoRegistroDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Juego"
+                "$ref": "#/components/schemas/JuegoRegistroDto"
               }
             }
           }
@@ -96,17 +96,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Juego"
+                "$ref": "#/components/schemas/JuegoRegistroDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Juego"
+                "$ref": "#/components/schemas/JuegoRegistroDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Juego"
+                "$ref": "#/components/schemas/JuegoRegistroDto"
               }
             }
           }
@@ -453,41 +453,6 @@
   },
   "components": {
     "schemas": {
-      "Compra": {
-        "required": [
-          "iD_USUARIO"
-        ],
-        "type": "object",
-        "properties": {
-          "iD_COMPRA": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "iD_USUARIO": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "usuario": {
-            "$ref": "#/components/schemas/Usuario"
-          },
-          "fecha": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "total": {
-            "type": "number",
-            "format": "double"
-          },
-          "detallesCompra": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DetalleCompra"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
       "CompraDto": {
         "type": "object",
         "properties": {
@@ -509,34 +474,6 @@
         },
         "additionalProperties": false
       },
-      "DetalleCompra": {
-        "type": "object",
-        "properties": {
-          "iD_DETALLE": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "iD_COMPRA": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "compra": {
-            "$ref": "#/components/schemas/Compra"
-          },
-          "iD_JUEGO": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "juego": {
-            "$ref": "#/components/schemas/Juego"
-          },
-          "preciO_UNITARIO": {
-            "type": "number",
-            "format": "double"
-          }
-        },
-        "additionalProperties": false
-      },
       "DetalleCompraDto": {
         "type": "object",
         "properties": {
@@ -551,13 +488,7 @@
         },
         "additionalProperties": false
       },
-      "Juego": {
-        "required": [
-          "descripcion",
-          "iD_CATEGORIA",
-          "nombre",
-          "precio"
-        ],
+      "JuegoRegistroDto": {
         "type": "object",
         "properties": {
           "iD_JUEGO": {
@@ -565,18 +496,14 @@
             "format": "int32"
           },
           "nombre": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "descripcion": {
-            "maxLength": 500,
-            "minLength": 0,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "precio": {
-            "maximum": 1000,
-            "minimum": 0.01,
             "type": "number",
             "format": "double"
           },
@@ -584,121 +511,16 @@
             "type": "integer",
             "format": "int32"
           },
-          "nombrE_CATEGORIA": {
-            "type": "string",
-            "nullable": true
-          },
           "imageN_URL": {
-            "maxLength": 300,
-            "minLength": 0,
             "type": "string",
-            "format": "uri",
             "nullable": true
           },
           "videO_URL": {
-            "maxLength": 300,
-            "minLength": 0,
             "type": "string",
-            "format": "uri",
             "nullable": true
           },
           "activo": {
             "type": "boolean"
-          },
-          "detallesCompra": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/DetalleCompra"
-            },
-            "nullable": true
-          },
-          "recomendaciones": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Recomendacion"
-            },
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Recomendacion": {
-        "type": "object",
-        "properties": {
-          "iD_RECOMENDACION": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "iD_USUARIO": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "usuario": {
-            "$ref": "#/components/schemas/Usuario"
-          },
-          "iD_JUEGO": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "juego": {
-            "$ref": "#/components/schemas/Juego"
-          },
-          "motivo": {
-            "maxLength": 200,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "Usuario": {
-        "required": [
-          "contrasena",
-          "correo",
-          "nombre"
-        ],
-        "type": "object",
-        "properties": {
-          "iD_USUARIO": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "nombre": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "correo": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string",
-            "format": "email"
-          },
-          "contrasena": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "rol": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string",
-            "nullable": true
-          },
-          "compras": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Compra"
-            },
-            "nullable": true
-          },
-          "recomendaciones": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Recomendacion"
-            },
-            "nullable": true
           }
         },
         "additionalProperties": false

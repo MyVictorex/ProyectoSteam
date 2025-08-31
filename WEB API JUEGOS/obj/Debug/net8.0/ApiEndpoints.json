@@ -45,7 +45,7 @@
     "Parameters": [
       {
         "Name": "juego",
-        "Type": "ExperienciasProyecto.Models.Juego",
+        "Type": "WEB_API_JUEGOS.Models.Dto.JuegoRegistroDto",
         "IsRequired": true
       }
     ],
@@ -61,7 +61,7 @@
     "Parameters": [
       {
         "Name": "juego",
-        "Type": "ExperienciasProyecto.Models.Juego",
+        "Type": "WEB_API_JUEGOS.Models.Dto.JuegoRegistroDto",
         "IsRequired": true
       }
     ],
