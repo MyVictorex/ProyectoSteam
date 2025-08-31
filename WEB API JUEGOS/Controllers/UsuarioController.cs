@@ -32,16 +32,34 @@ namespace WEB_API_JUEGOS.Controllers
             return Ok(user);
         }
 
-        // POST api/usuario/registrar
         [HttpPost("registrar")]
-        public IActionResult Registrar([FromBody] Usuario request)
+        public IActionResult Registrar([FromBody] UsuarioRegistroDto request)
         {
-            bool registrado = _usuarioRepo.RegistrarUsuario(request.NOMBRE, request.CORREO, request.CONTRASENA);
-            if (!registrado)
-                return BadRequest(new { mensaje = "No se pudo registrar el usuario" });
+            if (!ModelState.IsValid)
+            {
+                var errores = ModelState.Values.SelectMany(v => v.Errors)
+                                               .Select(e => e.ErrorMessage)
+                                               .ToList();
+                return BadRequest(new { mensaje = "Modelo inválido", errores });
+            }
 
-            return Ok(new { mensaje = "Usuario registrado correctamente" });
+            var rolAsignado = string.IsNullOrEmpty(request.ROL) ? "Usuario" : request.ROL;
+
+            bool registrado = _usuarioRepo.RegistrarUsuario(
+                request.NOMBRE,
+                request.CORREO,
+                request.CONTRASENA,
+                rolAsignado
+            );
+
+            if (!registrado)
+                return BadRequest(new { mensaje = "⚠️ El correo ya está registrado." });
+
+            return Ok(new { mensaje = "✅ Usuario registrado correctamente" });
         }
+
+
+
 
         // GET api/usuario/{id}/historial
         [HttpGet("{id}/historial")]

@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Mvc;
+using WEB_API_JUEGOS.Models.Dto;
 
 namespace ExperienciasProyecto.Controllers
 {
@@ -45,17 +46,27 @@ namespace ExperienciasProyecto.Controllers
             }
         }
 
-        private async Task<bool> registrarUsuarioAsync(Usuario usuario)
+        private async Task<bool> registrarUsuarioAsync(UsuarioRegistroDto usuario)
         {
             using (var clienteHttp = new HttpClient { BaseAddress = new Uri(apiUrl) })
             {
-                var contenido = new StringContent(JsonConvert.SerializeObject(usuario),
-                    Encoding.UTF8, "application/json");
+                // Ignorar valores nulos al serializar
+                var json = JsonConvert.SerializeObject(usuario, new JsonSerializerSettings
+                {
+                    NullValueHandling = NullValueHandling.Ignore
+                });
+
+                var contenido = new StringContent(json, Encoding.UTF8, "application/json");
 
                 var mensaje = await clienteHttp.PostAsync("usuario/registrar", contenido);
+                var respuesta = await mensaje.Content.ReadAsStringAsync();
+
+                Console.WriteLine($"Código: {mensaje.StatusCode}, Respuesta: {respuesta}");
+
                 return mensaje.IsSuccessStatusCode;
             }
         }
+
 
         private async Task<List<HistorialCompra>> obtenerHistorialAsync(int idUsuario)
         {
@@ -115,17 +126,23 @@ namespace ExperienciasProyecto.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult> RegistrarUsu(Usuario usuario)
+        public async Task<ActionResult> RegistrarUsu(UsuarioRegistroDto usuario)
         {
+            // Asignamos el rol fijo sin mostrarlo en la vista
+            usuario.ROL = "Usuario";  // 👈 o "Cliente", depende de cómo tu API lo espera
+
             bool registrado = await registrarUsuarioAsync(usuario);
+
             if (!registrado)
             {
-                ViewBag.Mensaje = "No se pudo registrar";
+                ViewBag.Mensaje = "❌ No se pudo registrar el usuario.";
                 return View(usuario);
             }
 
+            ViewBag.Mensaje = "✅ Usuario registrado correctamente.";
             return RedirectToAction("Login");
         }
+
 
         public async Task<ActionResult> Historial()
         {

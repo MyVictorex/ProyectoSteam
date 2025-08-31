@@ -269,6 +269,7 @@
     <Compile Include="Models\DetalleCompra.cs" />
     <Compile Include="Models\Dto\CompraDto.cs" />
     <Compile Include="Models\Dto\DetalleCompraDto.cs" />
+    <Compile Include="Models\Dto\UsuarioRegistroDto.cs" />
     <Compile Include="Models\HistorialCompra.cs" />
     <Compile Include="Models\Juego.cs" />
     <Compile Include="Models\PerfilViewModel.cs" />

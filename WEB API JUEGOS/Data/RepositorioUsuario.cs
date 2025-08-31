@@ -73,22 +73,37 @@ namespace WEB_API_JUEGOS.Data
             }
             return user;
         }
-
-        public bool RegistrarUsuario(string nombre, string correo, string contrasena)
+        public bool RegistrarUsuario(string nombre, string correo, string contrasena, string rol)
         {
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
+
+                // 🔍 Verificar si ya existe el correo antes de insertar
+                SqlCommand checkCmd = new SqlCommand("SELECT COUNT(1) FROM USUARIO WHERE CORREO = @CORREO", cn);
+                checkCmd.Parameters.AddWithValue("@CORREO", correo);
+
+                int existe = (int)checkCmd.ExecuteScalar();
+                if (existe > 0)
+                {
+                    return false; // el correo ya está registrado
+                }
+
+                // Si no existe, recién ejecutamos el SP
                 SqlCommand cmd = new SqlCommand("SP_REGISTRAR_USUARIO", cn);
                 cmd.CommandType = CommandType.StoredProcedure;
+
                 cmd.Parameters.AddWithValue("@NOMBRE", nombre);
                 cmd.Parameters.AddWithValue("@CORREO", correo);
                 cmd.Parameters.AddWithValue("@CONTRASENA", contrasena);
+                cmd.Parameters.AddWithValue("@ROL", rol);
 
                 int filas = cmd.ExecuteNonQuery();
                 return filas > 0;
             }
         }
+
+
 
         public decimal TotalGastadoUsuario(int idUsuario)
         {

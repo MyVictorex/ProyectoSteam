@@ -257,7 +257,7 @@
     "Parameters": [
       {
         "Name": "request",
-        "Type": "ExperienciasProyecto.Models.Usuario",
+        "Type": "WEB_API_JUEGOS.Models.Dto.UsuarioRegistroDto",
         "IsRequired": true
       }
     ],
