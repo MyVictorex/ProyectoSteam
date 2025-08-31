@@ -33,11 +33,11 @@ namespace WEB_API_JUEGOS.Data
                         NOMBRE = dr.GetString(1),
                         DESCRIPCION = dr.GetString(2),
                         PRECIO = dr.GetDecimal(3),
-                        CATEGORIA = dr.GetString(4),
-                        ACTIVO = dr.GetBoolean(5), // importante
-                        IMAGEN_URL = dr.IsDBNull(6) ? null : dr.GetString(6),
-                        VIDEO_URL = dr.IsDBNull(7) ? null : dr.GetString(7)
-
+                   
+                        ACTIVO = dr.GetBoolean(4), // importante
+                        IMAGEN_URL = dr.IsDBNull(5) ? null : dr.GetString(5),
+                        VIDEO_URL = dr.IsDBNull(6) ? null : dr.GetString(6),
+                        NOMBRE_CATEGORIA = dr.GetString(7),
                     });
                 }
                 dr.Close();
@@ -54,7 +54,9 @@ namespace WEB_API_JUEGOS.Data
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT * FROM JUEGO", cn);
+                SqlCommand cmd = new SqlCommand("sp_ObtenerJuegosParaVista", cn);
+                cmd.CommandType = System.Data.CommandType.StoredProcedure;
+
                 SqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
@@ -64,9 +66,10 @@ namespace WEB_API_JUEGOS.Data
                         NOMBRE = dr.GetString(1),
                         DESCRIPCION = dr.GetString(2),
                         PRECIO = dr.GetDecimal(3),
-                        CATEGORIA = dr.GetString(4),
-                        ACTIVO = dr.GetBoolean(5), // Asegúrate de tener esta propiedad
-                        IMAGEN_URL = dr.IsDBNull(6) ? null : dr.GetString(6)
+                        ACTIVO = dr.GetBoolean(4),
+                        IMAGEN_URL = dr.IsDBNull(5) ? null : dr.GetString(5),
+                        ID_CATEGORIA = dr.GetInt32(6),
+                        NOMBRE_CATEGORIA = dr.IsDBNull(7) ? null : dr.GetString(7) // <--- Esto es clave
                     });
                 }
                 dr.Close();
@@ -75,6 +78,9 @@ namespace WEB_API_JUEGOS.Data
 
             return juegos;
         }
+
+
+
 
         public IEnumerable<Juego> BuscarJuegos(string busqueda)
         {
@@ -97,7 +103,7 @@ namespace WEB_API_JUEGOS.Data
                         NOMBRE = dr.GetString(1),
                         DESCRIPCION = dr.GetString(2),
                         PRECIO = dr.GetDecimal(3),
-                        CATEGORIA = dr.GetString(4),
+                        ID_CATEGORIA = dr.GetInt32(4),
                         IMAGEN_URL = dr.IsDBNull(5) ? null : dr.GetString(5)
                     });
                 }
@@ -114,10 +120,9 @@ namespace WEB_API_JUEGOS.Data
             if (juego == null)
                 throw new ArgumentNullException(nameof(juego), "El objeto juego no puede ser nulo.");
 
-            // Validación básica opcional
             if (string.IsNullOrWhiteSpace(juego.NOMBRE) ||
                 string.IsNullOrWhiteSpace(juego.DESCRIPCION) ||
-                string.IsNullOrWhiteSpace(juego.CATEGORIA) ||
+                juego.ID_CATEGORIA <= 0 ||   // <-- Validar ID de categoría
                 juego.PRECIO <= 0)
             {
                 throw new ArgumentException("Todos los campos obligatorios del juego deben estar correctamente llenos.");
@@ -136,18 +141,15 @@ namespace WEB_API_JUEGOS.Data
                     cmd.Parameters.AddWithValue("@NOMBRE", juego.NOMBRE);
                     cmd.Parameters.AddWithValue("@DESCRIPCION", juego.DESCRIPCION);
                     cmd.Parameters.AddWithValue("@PRECIO", juego.PRECIO);
-                    cmd.Parameters.AddWithValue("@CATEGORIA", juego.CATEGORIA);
+                    cmd.Parameters.AddWithValue("@CATEGORIA", juego.ID_CATEGORIA); // <-- Cambiado
                     cmd.Parameters.AddWithValue("@IMAGEN_URL", juego.IMAGEN_URL ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@VIDEO_URL", juego.VIDEO_URL ?? (object)DBNull.Value);
-
-
 
                     cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
-                // Log de error o mensaje informativo (puedes adaptarlo)
                 throw new Exception("Error al insertar el juego en la base de datos: " + ex.Message);
             }
         }
@@ -157,19 +159,21 @@ namespace WEB_API_JUEGOS.Data
             using (SqlConnection cn = new SqlConnection(_connectionString))
             {
                 cn.Open();
-                SqlCommand cmd = new SqlCommand("SP_EDITAR_JUEGO", cn);
-                cmd.CommandType = CommandType.StoredProcedure;
+                SqlCommand cmd = new SqlCommand("SP_EDITAR_JUEGO", cn)
+                {
+                    CommandType = CommandType.StoredProcedure
+                };
 
                 cmd.Parameters.AddWithValue("@ID_JUEGO", juego.ID_JUEGO);
                 cmd.Parameters.AddWithValue("@NOMBRE", juego.NOMBRE);
                 cmd.Parameters.AddWithValue("@DESCRIPCION", juego.DESCRIPCION);
                 cmd.Parameters.AddWithValue("@PRECIO", juego.PRECIO);
-                cmd.Parameters.AddWithValue("@CATEGORIA", juego.CATEGORIA);
+                cmd.Parameters.AddWithValue("@CATEGORIA", juego.ID_CATEGORIA); // <-- Cambiado
 
                 cmd.ExecuteNonQuery();
-                cn.Close();
             }
         }
+
 
         public void DesactivarJuegoBD(int id)
         {

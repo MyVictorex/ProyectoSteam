@@ -1,4 +1,5 @@
 ﻿using ExperienciasProyecto.Models;
+using WEB_API_JUEGOS.Models.Dto;
 
 namespace WEB_API_JUEGOS.Data.Contrato
 {
@@ -9,5 +10,7 @@ namespace WEB_API_JUEGOS.Data.Contrato
         bool RegistrarUsuario(string nombre, string correo, string contrasena);
         IEnumerable<HistorialCompra> HistorialUsuario(int idUsuario);
         decimal TotalGastadoUsuario(int idUsuario);
+
+        PerfilViewModel ObtenerPerfil(int idUsuario);
     }
 }

@@ -5,6 +5,18 @@
     "version": "1.0"
   },
   "paths": {
+    "/api/Categoria": {
+      "get": {
+        "tags": [
+          "Categoria"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Compra/registrar": {
       "post": {
         "tags": [
@@ -14,17 +26,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Compra"
+                "$ref": "#/components/schemas/CompraDto"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/Compra"
+                "$ref": "#/components/schemas/CompraDto"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/Compra"
+                "$ref": "#/components/schemas/CompraDto"
               }
             }
           }
@@ -245,6 +257,29 @@
         }
       }
     },
+    "/api/Juegos/{id}": {
+      "get": {
+        "tags": [
+          "Juegos"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/api/Usuario/login": {
       "post": {
         "tags": [
@@ -353,6 +388,29 @@
         }
       }
     },
+    "/api/Usuario/{id}/perfil": {
+      "get": {
+        "tags": [
+          "Usuario"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/WeatherForecast": {
       "get": {
         "tags": [
@@ -430,6 +488,27 @@
         },
         "additionalProperties": false
       },
+      "CompraDto": {
+        "type": "object",
+        "properties": {
+          "iD_USUARIO": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "total": {
+            "type": "number",
+            "format": "double"
+          },
+          "detallesCompra": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/DetalleCompraDto"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "DetalleCompra": {
         "type": "object",
         "properties": {
@@ -458,10 +537,24 @@
         },
         "additionalProperties": false
       },
+      "DetalleCompraDto": {
+        "type": "object",
+        "properties": {
+          "iD_JUEGO": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "preciO_UNITARIO": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
       "Juego": {
         "required": [
-          "categoria",
           "descripcion",
+          "iD_CATEGORIA",
           "nombre",
           "precio"
         ],
@@ -487,10 +580,13 @@
             "type": "number",
             "format": "double"
           },
-          "categoria": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
+          "iD_CATEGORIA": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "nombrE_CATEGORIA": {
+            "type": "string",
+            "nullable": true
           },
           "imageN_URL": {
             "maxLength": 300,

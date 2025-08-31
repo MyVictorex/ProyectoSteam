@@ -3,6 +3,10 @@
     "Name": "Nuevo perfil",
     "Projects": [
       {
+        "Path": "ExperienciasProyecto\\ExperienciasProyecto.csproj",
+        "Action": "Start"
+      },
+      {
         "Path": "WEB API JUEGOS\\WEB API JUEGOS.csproj",
         "Action": "Start"
       }

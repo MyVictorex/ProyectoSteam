@@ -140,13 +140,13 @@
         {
             <p>
                 Bienvenido, <strong>@Session["NOMBRE_USUARIO"]</strong> |
-                @Html.ActionLink("Cerrar Sesión", "Logout", "Juego", null, new { @class = "btn btn-danger btn-sm" })
+                @Html.ActionLink("Cerrar Sesión", "Logout", "Usuario", null, new { @class = "btn btn-danger btn-sm" })
             </p>
         }
         else
         {
             <p>
-                @Html.ActionLink("Iniciar Sesión", "Login", "Juego", null, new { @class = "btn btn-primary btn-sm" })
+                @Html.ActionLink("Iniciar Sesión", "Login", "Usuario", null, new { @class = "btn btn-primary btn-sm" })
             </p>
         }
     </div>
@@ -165,10 +165,10 @@
             @Html.ActionLink("➕ Agregar Nuevo", "InsertarJuego", "Juego", null, new { @class = "btn btn-success btn-sm btn-action" })
         }
 
-        @Html.ActionLink("💰 Total Gastado", "TotalGastado", "Juego", null, new { @class = "btn btn-success btn-sm btn-action" })
+        @Html.ActionLink("💰 Total Gastado", "TotalGastado", "Usuario", null, new { @class = "btn btn-success btn-sm btn-action" })
         @Html.ActionLink("⭐ Recomendaciones", "Recomendaciones", "Juego", null, new { @class = "btn btn-info btn-sm btn-action" })
-        @Html.ActionLink("🛒 Ver Carrito", "Carrito", "Juego", null, new { @class = "btn btn-warning btn-sm btn-action" })
-        @Html.ActionLink("📜 Historial", "Historial", "Juego", null, new { @class = "btn btn-secondary btn-sm btn-action" })
+        @Html.ActionLink("🛒 Ver Carrito", "Carrito", "Compra", null, new { @class = "btn btn-warning btn-sm btn-action" })
+        @Html.ActionLink("📜 Historial", "Historial", "Compra", null, new { @class = "btn btn-secondary btn-sm btn-action" })
     </div>
 
     <div class="row row-cols-1 row-cols-md-3 g-4">
@@ -182,26 +182,26 @@
                         <p class="card-text">@item.DESCRIPCION</p>
                         <p class="card-text">
                             <strong>S/. @item.PRECIO</strong> |
-                            <span class="badge">@item.CATEGORIA</span>
+                            <span class="badge">@item.NOMBRE_CATEGORIA</span>
                         </p>
 
-                        @* Reseñas fijas simuladas para todos los juegos *@
+                        @* Reseñas fijas simuladas *@
                         @{
                             var reseñas = new List<string>
-                                {
-                        "★★★★★ - “Uno de los mejores juegos que he probado este año.” - <strong>Camila</strong>",
-                        "★★★☆☆ - “Buen concepto pero podría estar más pulido.” - <strong>Rafael</strong>",
-                        "★★★★☆ - “Lo recomiendo, vale la pena cada sol.” - <strong>Esteban</strong>",
-                        "★★★☆☆ - “Muy entretenido, aunque tiene algunos bugs.” - <strong>Valeria</strong>",
-                        "★★★★★ - “Increíble historia y gráficos de otro nivel.” - <strong>Joel</strong>",
-                        "★★★☆☆ - “Un clásico moderno, aunque algo corto.” - <strong>Jazmín</strong>",
-                        "★★★★☆ - “Perfecto para jugar con amigos.” - <strong>Kevin</strong>",
-                        "★★☆☆☆ - “No fue lo que esperaba, muy repetitivo.” - <strong>Diana</strong>",
-                        "★★★★★ - “Lo terminé dos veces y aún quiero más.” - <strong>Alejandro</strong>",
-                        "★★★☆☆ - “Tiene potencial, pero falta optimización.” - <strong>Lucía</strong>"
-                    };
+                                        {
+                                "★★★★★ - “Uno de los mejores juegos que he probado este año.” - <strong>Camila</strong>",
+                                "★★★☆☆ - “Buen concepto pero podría estar más pulido.” - <strong>Rafael</strong>",
+                                "★★★★☆ - “Lo recomiendo, vale la pena cada sol.” - <strong>Esteban</strong>",
+                                "★★★☆☆ - “Muy entretenido, aunque tiene algunos bugs.” - <strong>Valeria</strong>",
+                                "★★★★★ - “Increíble historia y gráficos de otro nivel.” - <strong>Joel</strong>",
+                                "★★★☆☆ - “Un clásico moderno, aunque algo corto.” - <strong>Jazmín</strong>",
+                                "★★★★☆ - “Perfecto para jugar con amigos.” - <strong>Kevin</strong>",
+                                "★★☆☆☆ - “No fue lo que esperaba, muy repetitivo.” - <strong>Diana</strong>",
+                                "★★★★★ - “Lo terminé dos veces y aún quiero más.” - <strong>Alejandro</strong>",
+                                "★★★☆☆ - “Tiene potencial, pero falta optimización.” - <strong>Lucía</strong>"
+                            };
 
-                            var rnd = new Random(item.ID_JUEGO); // Semilla con ID para que no cambien en cada carga
+                            var rnd = new Random(item.ID_JUEGO); // Semilla con ID
                             var reseñaElegida = reseñas[rnd.Next(reseñas.Count)];
                         }
 
@@ -222,12 +222,23 @@
                         }
                         else
                         {
-                            @Html.ActionLink("🛒 Agregar al carrito", "AgregarAlCarrito", "Juego", new { id = item.ID_JUEGO }, new { @class = "btn btn-primary btn-sm" })
+                            @Html.ActionLink("🛒 Agregar al carrito", "AgregarAlCarrito", "Compra", new { id = item.ID_JUEGO }, new { @class = "btn btn-primary btn-sm" })
                         }
                     </div>
                 </div>
             </div>
         }
-
     </div>
+
+    @* Paginación estilo Steam *@
+    <nav aria-label="Paginación">
+        <ul class="pagination justify-content-center mt-4">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.Page ? "active" : "")">
+                    @Html.ActionLink(i.ToString(), "Index", new { page = i }, new { @class = "page-link" })
+                </li>
+            }
+        </ul>
+    </nav>
 </div>

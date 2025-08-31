@@ -89,6 +89,15 @@ namespace WEB_API_JUEGOS.Controllers
             return Ok(lista);
         }
 
+        // GET api/juegos/5
+        [HttpGet("{id}")]
+        public IActionResult ObtenerPorId(int id)
+        {
+            var juego = _juegoRepo.ObtenerJuegos().FirstOrDefault(j => j.ID_JUEGO == id);
+            if (juego == null)
+                return NotFound();
+            return Ok(juego);
+        }
 
     }
 }

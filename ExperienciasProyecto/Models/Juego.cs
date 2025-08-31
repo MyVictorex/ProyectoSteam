@@ -26,8 +26,15 @@ namespace ExperienciasProyecto.Models
         public decimal PRECIO { get; set; }
 
         [Required(ErrorMessage = "La categoría es obligatoria.")]
-        [StringLength(50, ErrorMessage = "La categoría no debe exceder los 50 caracteres.")]
-        public string CATEGORIA { get; set; }
+        [Display(Name = "Categoría")]
+        public int ID_CATEGORIA { get; set; }
+
+        // Propiedad de navegación a Categoria
+        [ForeignKey("ID_CATEGORIA")]
+        public virtual Categoria Categoria { get; set; }
+
+        public string NOMBRE_CATEGORIA { get; set; }
+
 
         [Display(Name = "Imagen del juego")]
         [StringLength(300, ErrorMessage = "La URL de la imagen no debe superar los 300 caracteres.")]

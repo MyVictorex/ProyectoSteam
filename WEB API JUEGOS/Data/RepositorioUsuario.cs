@@ -2,6 +2,7 @@
 using ExperienciasProyecto.Models;
 using Microsoft.Data.SqlClient;
 using WEB_API_JUEGOS.Data.Contrato;
+using WEB_API_JUEGOS.Models.Dto;
 
 namespace WEB_API_JUEGOS.Data
 {
@@ -108,5 +109,74 @@ namespace WEB_API_JUEGOS.Data
             }
             return total;
         }
+
+        public PerfilViewModel ObtenerPerfil(int idUsuario)
+        {
+            var perfil = new PerfilViewModel();
+
+            using (SqlConnection cn = new SqlConnection(_connectionString))
+            {
+                cn.Open();
+                SqlCommand cmd = new SqlCommand("SP_PERFIL_USUARIO", cn);
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@ID_USUARIO", idUsuario);
+
+                SqlDataReader dr = cmd.ExecuteReader();
+
+                // Usuario
+                if (dr.Read())
+                {
+                    perfil.Usuario = new Usuario
+                    {
+                        ID_USUARIO = dr.GetInt32(dr.GetOrdinal("ID_USUARIO")),
+                        NOMBRE = dr.GetString(dr.GetOrdinal("NOMBRE")),
+                        CORREO = dr.GetString(dr.GetOrdinal("CORREO")),
+                        ROL = dr.GetString(dr.GetOrdinal("ROL"))
+                    };
+                }
+
+                // Historial de compras
+                dr.NextResult();
+                perfil.HistorialDeCompras = new List<HistorialCompra>();
+                while (dr.Read())
+                {
+                    ((List<HistorialCompra>)perfil.HistorialDeCompras).Add(new HistorialCompra
+                    {
+                        ID_COMPRA = dr.GetInt32(dr.GetOrdinal("ID_COMPRA")),
+                        FECHA = dr.GetDateTime(dr.GetOrdinal("FECHA")),
+                        NOMBRE_JUEGO = dr.GetString(dr.GetOrdinal("NOMBRE_JUEGO")),
+                        IMAGEN_URL = dr.IsDBNull(dr.GetOrdinal("IMAGEN_URL")) ? null : dr.GetString(dr.GetOrdinal("IMAGEN_URL")),
+                        PRECIO_UNITARIO = dr.GetDecimal(dr.GetOrdinal("PRECIO_UNITARIO"))
+                    });
+                }
+
+                // Total gastado
+                dr.NextResult();
+                if (dr.Read())
+                {
+                    int colIndex = dr.GetOrdinal("TOTAL_GASTADO");
+                    perfil.TotalGastado = dr.IsDBNull(colIndex) ? 0 : dr.GetDecimal(colIndex);
+                }
+
+                // Recomendaciones
+                dr.NextResult();
+                perfil.Recomendaciones = new List<RecomendacionVista>();
+                while (dr.Read())
+                {
+                    ((List<RecomendacionVista>)perfil.Recomendaciones).Add(new RecomendacionVista
+                    {
+                        ID_RECOMENDACION = dr.GetInt32(dr.GetOrdinal("ID_RECOMENDACION")),
+                        NOMBRE_JUEGO = dr.GetString(dr.GetOrdinal("NOMBRE")),
+                        MOTIVO = dr.GetString(dr.GetOrdinal("MOTIVO")),
+                        IMAGEN_URL = dr.IsDBNull(dr.GetOrdinal("IMAGEN_URL")) ? null : dr.GetString(dr.GetOrdinal("IMAGEN_URL"))
+                    });
+                }
+
+                dr.Close();
+            }
+
+            return perfil;
+        }
+
     }
 }

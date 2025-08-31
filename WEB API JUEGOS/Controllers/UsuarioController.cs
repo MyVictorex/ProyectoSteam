@@ -59,7 +59,19 @@ namespace WEB_API_JUEGOS.Controllers
             return Ok(new { totalGastado = total });
         }
 
-    
+
+        // GET api/usuario/{id}/perfil
+        [HttpGet("{id}/perfil")]
+        public IActionResult Perfil(int id)
+        {
+            var perfil = _usuarioRepo.ObtenerPerfil(id);
+            if (perfil == null)
+                return NotFound(new { mensaje = "No se encontró el perfil" });
+
+            return Ok(perfil);
+        }
+
+
     }
 }
 

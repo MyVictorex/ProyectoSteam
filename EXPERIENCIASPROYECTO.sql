@@ -1,24 +1,71 @@
 ﻿CREATE DATABASE PRYECTO_DE_EXPERIENCIA;
 USE PRYECTO_DE_EXPERIENCIA;
 
+CREATE TABLE Categoria (
+    ID_CATEGORIA INT IDENTITY PRIMARY KEY,
+    NOMBRE NVARCHAR(100) NOT NULL
+);
+
+INSERT INTO Categoria (NOMBRE)
+VALUES
+('Aventura'),
+('Sandbox'),
+('Deportes'),
+('Party'),
+('Acción'),
+('Simulación'),
+('Shooter'),
+('Estrategia'),
+('Carreras'),
+('Terror'),
+('Plataformas'),
+('RPG');
+
+CREATE OR ALTER PROCEDURE sp_ObtenerJuegosParaVista
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT 
+        j.ID_JUEGO,
+        j.NOMBRE,
+        j.DESCRIPCION,
+        j.PRECIO,
+        j.ACTIVO,
+        j.IMAGEN_URL,
+        j.ID_CATEGORIA,
+        c.NOMBRE AS NOMBRE_CATEGORIA
+    FROM JUEGO j
+    INNER JOIN CATEGORIA c ON j.ID_CATEGORIA = c.ID_CATEGORIA
+    ORDER BY j.ID_JUEGO;
+END
+EXEC sp_ObtenerJuegosParaVista;
+
+
+Select*from JUEGO
+
 CREATE TABLE USUARIO (
     ID_USUARIO INT PRIMARY KEY IDENTITY,
     NOMBRE NVARCHAR(100),
     CORREO NVARCHAR(100) UNIQUE,
-    CONTRASENA NVARCHAR(100)
+    CONTRASENA NVARCHAR(100),
+    ROL NVARCHAR(50) NOT NULL DEFAULT 'Usuario'
 );
 
--- Agregar columna ROL con valor por defecto 'Usuario'
-ALTER TABLE USUARIO
-ADD ROL NVARCHAR(50) NOT NULL DEFAULT 'Usuario';
 
 CREATE TABLE JUEGO (
     ID_JUEGO INT PRIMARY KEY IDENTITY,
-    NOMBRE NVARCHAR(100),
+    NOMBRE NVARCHAR(100) NOT NULL,
     DESCRIPCION NVARCHAR(500),
     PRECIO DECIMAL(10,2),
-    CATEGORIA NVARCHAR(50)
+    ID_CATEGORIA INT NOT NULL,
+    IMAGEN_URL NVARCHAR(300),
+    VIDEO_URL NVARCHAR(300),
+    ACTIVO BIT NOT NULL DEFAULT 1,
+    CONSTRAINT FK_Juego_Categoria FOREIGN KEY (ID_CATEGORIA) REFERENCES Categoria(ID_CATEGORIA)
 );
+
+
 CREATE TABLE COMPRA (
     ID_COMPRA INT PRIMARY KEY IDENTITY,
     ID_USUARIO INT,
@@ -55,13 +102,27 @@ END
 
 Select*from USUARIO
 
-Create or ALTER PROCEDURE SP_LISTAR_JUEGOS
+CREATE OR ALTER PROCEDURE SP_LISTAR_JUEGOS
 AS
 BEGIN
-    SELECT *
-    FROM JUEGO
-    WHERE ACTIVO = 1;
+    SET NOCOUNT ON;
+
+    SELECT 
+        j.ID_JUEGO,
+        j.NOMBRE,
+        j.DESCRIPCION,
+        j.PRECIO,
+        j.ACTIVO,
+        j.IMAGEN_URL, 
+		j.VIDEO_URL,
+        c.NOMBRE AS NOMBRE_CATEGORIA,
+		j.ID_CATEGORIA
+    FROM JUEGO j
+    INNER JOIN CATEGORIA c ON j.ID_CATEGORIA = c.ID_CATEGORIA
+    WHERE j.ACTIVO = 1
+    ORDER BY j.ID_JUEGO;
 END
+
 
 CREATE PROCEDURE SP_REGISTRAR_COMPRA
     @ID_USUARIO INT,
@@ -106,10 +167,7 @@ INSERT INTO USUARIO (NOMBRE, CORREO, CONTRASENA)
 VALUES
 ('Juan Pérez', 'juanperez@gmail.com', '1234'),
 ('Ana Torres', 'ana.torres@hotmail.com', 'abcd'),
-('Luis Gómez', 'luisgomez@yahoo.com', 'pass123');
-
-INSERT INTO USUARIO (NOMBRE, CORREO, CONTRASENA)
-VALUES
+('Luis Gómez', 'luisgomez@yahoo.com', 'pass123'),
 ('Carlos Ruiz', 'carlos.ruiz@gmail.com', 'pass2025'), 
 ('Maria Lopez', 'maria@gmail.com', 'clave123'),
 ('Pedro Salas', 'pedro@gmail.com', 'pedrito'),
@@ -118,14 +176,6 @@ VALUES
 ('Karla Núñez', 'karla_nu@hotmail.com', 'karla22'),
 ('Leo Mendoza', 'leo.mz@gmail.com', 'leoPass');
 
-
-INSERT INTO JUEGO (NOMBRE, DESCRIPCION, PRECIO, CATEGORIA)
-VALUES
-('Elden Ring', 'Juego de acción y rol en mundo abierto', 59.99, 'RPG'),
-('Minecraft', 'Juego de construcción y aventura', 26.95, 'Sandbox'),
-('FIFA 25', 'Simulador de fútbol con equipos reales', 49.99, 'Deportes'),
-('Among Us', 'Juego multijugador de deducción social', 4.99, 'Party'),
-('Cyberpunk 2077', 'Juego de rol futurista de mundo abierto', 29.99, 'Acción');
 
 -- Compra hecha por Juan Pérez
 INSERT INTO COMPRA (ID_USUARIO, TOTAL)
@@ -190,7 +240,7 @@ BEGIN
 END
 
 INSERT INTO USUARIO (NOMBRE, CORREO, CONTRASENA, ROL)
-VALUES ('Administrador', 'admin@correo.com', 'admin123', 'Admin');
+VALUES ('Administrador', 'admin@juegos.com', 'admin123', 'Admin');
 
 CREATE PROCEDURE SP_TOTAL_GASTADO_USUARIO
     @ID_USUARIO INT
@@ -221,8 +271,6 @@ END
 
 
 
-ALTER TABLE JUEGO
-ADD ACTIVO BIT NOT NULL DEFAULT 1;
 
 CREATE PROCEDURE SP_DESACTIVAR_JUEGO
     @ID_JUEGO INT
@@ -241,30 +289,29 @@ BEGIN
     WHERE ID_JUEGO = @ID_JUEGO;
 END
 
-ALTER TABLE JUEGO
-ADD IMAGEN_URL NVARCHAR(300);
+
 
 ALTER PROCEDURE SP_INSERTAR_JUEGO
     @NOMBRE NVARCHAR(100),
     @DESCRIPCION NVARCHAR(500),
     @PRECIO DECIMAL(10,2),
-    @CATEGORIA NVARCHAR(50),
+    @ID_CATEGORIA INT,        -- <-- antes era NVARCHAR(50)
     @IMAGEN_URL NVARCHAR(300),
     @VIDEO_URL NVARCHAR(300)
 AS
 BEGIN
-    INSERT INTO JUEGO (NOMBRE, DESCRIPCION, PRECIO, CATEGORIA, IMAGEN_URL, VIDEO_URL)
-    VALUES (@NOMBRE, @DESCRIPCION, @PRECIO, @CATEGORIA, @IMAGEN_URL, @VIDEO_URL)
+    INSERT INTO JUEGO (NOMBRE, DESCRIPCION, PRECIO, ID_CATEGORIA, IMAGEN_URL, VIDEO_URL)
+    VALUES (@NOMBRE, @DESCRIPCION, @PRECIO, @ID_CATEGORIA, @IMAGEN_URL, @VIDEO_URL)
 END
 
 
 
-CREATE PROCEDURE SP_EDITAR_JUEGO
+ALTER PROCEDURE SP_EDITAR_JUEGO
     @ID_JUEGO INT,
     @NOMBRE NVARCHAR(100),
     @DESCRIPCION NVARCHAR(500),
     @PRECIO DECIMAL(10,2),
-    @CATEGORIA NVARCHAR(50)
+    @ID_CATEGORIA INT          -- <-- antes era NVARCHAR(50)
 AS
 BEGIN
     UPDATE JUEGO
@@ -272,189 +319,156 @@ BEGIN
         NOMBRE = @NOMBRE,
         DESCRIPCION = @DESCRIPCION,
         PRECIO = @PRECIO,
-        CATEGORIA = @CATEGORIA
+        ID_CATEGORIA = @ID_CATEGORIA
     WHERE ID_JUEGO = @ID_JUEGO;
 END
 
-UPDATE JUEGO
-SET IMAGEN_URL = 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70070000016597/0a33bcaba879403460afe2ff2aafaaefeede964e0fc11a430f71077867cc87f1'
-WHERE NOMBRE = 'Minecraft Deluxe';
 
-UPDATE JUEGO
-SET IMAGEN_URL = 'https://a.allegroimg.com/s512/1147c7/1ff47cd9410bb9750c92e989d367/Terraria-STEAM-NOWA-GRA-PELNA-POLSKA-WERSJA-PC-PL'
-WHERE NOMBRE = 'Terraria';
-
-UPDATE JUEGO
-SET IMAGEN_URL = 'https://i.ytimg.com/vi_webp/ztNoBI0m_P0/maxresdefault.webp'
-WHERE NOMBRE = 'Minecraft';
-
-UPDATE JUEGO
-SET IMAGEN_URL = 'https://media.tycsports.com/files/2022/07/19/454313/fifa-23-portada_1440x810_wmk.webp'
-WHERE NOMBRE = 'FIFA 25';
-
-UPDATE JUEGO
-SET IMAGEN_URL = 'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000036098/758ab0b61205081da2466386940752c70e0e5ea43bd39e8b9b13eaa455c69b7e'
-WHERE NOMBRE = 'Among Us';
-
-UPDATE JUEGO
-SET IMAGEN_URL = 'https://variety.com/wp-content/uploads/2023/10/cyberpunk.jpeg?w=1000&h=667&crop=1'
-WHERE NOMBRE = 'Cyberpunk 2077';
-
-SELECT * FROM JUEGO
-
-INSERT INTO JUEGO (NOMBRE, DESCRIPCION, PRECIO, CATEGORIA, IMAGEN_URL)
+-- Insert completo de juegos con imagen y video
+INSERT INTO JUEGO (NOMBRE, DESCRIPCION, PRECIO, ID_CATEGORIA, IMAGEN_URL, VIDEO_URL)
 VALUES
--- 1
-('Red Dead Redemption 2',
- 'Juego de acción-aventura en mundo abierto del viejo oeste.',
- 199.99, 'Aventura',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg'),
+('Elden Ring', 'Juego de acción y rol en mundo abierto', 59.99, 11, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg', 
+'https://www.youtube.com/watch?v=example1'),
 
--- 2
-('Hades',
- 'Juego de acción roguelike con temática mitológica griega.',
- 49.99, 'Acción',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg'),
+('Minecraft', 'Explora mundos infinitos y construye cualquier cosa, desde casas sencillas hasta castillos imponentes. Juega en modo creativo o sobrevive en modo supervivencia.', 26.95, 2, 
+'https://i.ytimg.com/vi_webp/ztNoBI0m_P0/maxresdefault.webp', 
+'https://www.youtube.com/watch?v=Rla3FUlxJdE'),
 
--- 3
-('The Sims 4',
- 'Simulación de vida donde puedes crear y controlar personas.',
- 89.90, 'Simulación',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/1222670/header.jpg'),
+('Minecraft Deluxe', 'La versión Deluxe de Minecraft ofrece una experiencia extendida con contenido exclusivo, ideal para jugadores creativos y fanáticos de la construcción sin límites.', 39.99, 2, 
+'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70070000016597/0a33bcaba879403460afe2ff2aafaaefeede964e0fc11a430f71077867cc87f1', 
+'https://www.youtube.com/watch?v=MmB9b5njVbA'),
 
--- 4
-('Valorant',
- 'Shooter táctico en línea 5v5 con habilidades únicas por agente.',
- 0.00, 'Shooter',
- 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShiabI3_h1JSwQiQFID7JJrBOL7Iogx4J0JA&s'),
+('FIFA 25', 'FIFA 23 trae consigo lo último en simulación de fútbol, con nuevas animaciones, físicas mejoradas y plantillas actualizadas para una experiencia más realista.', 49.99, 3, 
+'https://media.tycsports.com/files/2022/07/19/454313/fifa-23-portada_1440x810_wmk.webp', 
+'https://www.youtube.com/watch?v=o3V-GvvzjE4'),
 
--- 5
-('Age of Empires IV',
- 'Juego de estrategia en tiempo real ambientado en la historia.',
- 129.99, 'Estrategia',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/1466860/header.jpg'),
+('Among Us', 'Among Us es un juego multijugador donde tú y tus amigos deben descubrir al impostor entre la tripulación antes de que sea demasiado tarde.', 4.99, 4, 
+'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000036098/758ab0b61205081da2466386940752c70e0e5ea43bd39e8b9b13eaa455c69b7e', 
+'https://www.youtube.com/watch?v=NSJ4cESNQfE'),
 
--- 6
-('Forza Horizon 5',
- 'Carreras de autos en mundo abierto ambientado en México.',
- 229.00, 'Carreras',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg'),
+('Cyberpunk 2077', 'Cyberpunk 2077 te sumerge en una metrópolis futurista donde la tecnología y el caos gobiernan. Personaliza tu personaje y explora una narrativa compleja e inmersiva.', 29.99, 5, 
+'https://variety.com/wp-content/uploads/2023/10/cyberpunk.jpeg?w=1000&h=667&crop=1', 
+'https://www.youtube.com/watch?v=8X2kIfS6fb8'),
 
--- 7
-('Stardew Valley',
- 'Simulador de granja con exploración y relaciones sociales.',
- 34.99, 'Simulación',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg'),
+('Terraria', 'Terraria es una aventura en 2D donde puedes excavar, construir, luchar contra enemigos y explorar un mundo vasto lleno de secretos y objetos por descubrir.', 19.99, 2, 
+'https://a.allegroimg.com/s512/1147c7/1ff47cd9410bb9750c92e989d367/Terraria-STEAM-NOWA-GRA-PELNA-POLSKA-WERSJA-PC-PL', 
+'https://www.youtube.com/watch?v=w7uOhFTrrq0'),
 
--- 8
-('Resident Evil Village',
- 'Survival horror con acción intensa en una aldea misteriosa.',
- 189.00, 'Terror',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/header.jpg'),
+('Red Dead Redemption 2', 'Red Dead Redemption 2 es un viaje cinematográfico a través del Salvaje Oeste. Vive como forajido, cazador o explorador en un mundo abierto impresionante.', 199.99, 1, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1174180/header.jpg', 
+'https://www.youtube.com/watch?v=eaW0tYpxyp0'),
 
--- 9
-('Cuphead',
- 'Plataforma de acción con estilo de dibujos animados clásicos.',
- 45.00, 'Plataformas',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/268910/header.jpg'),
+('Hades', 'Hades es un adictivo roguelike de acción donde juegas como el hijo de Hades intentando escapar del Inframundo, con poderes de los dioses del Olimpo.', 49.99, 5, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1145360/header.jpg', 
+'https://www.youtube.com/watch?v=91t0ha9x0AE'),
 
--- 10
-('Hollow Knight',
- 'Metroidvania oscuro con exploración profunda y combates.',
- 55.00, 'Aventura',
- 'https://cdn.cloudflare.steamstatic.com/steam/apps/367520/header.jpg');
+('The Sims 4', 'En The Sims 4 puedes crear y controlar personas, construir sus casas y desarrollar sus historias en un mundo lleno de posibilidades y creatividad.', 89.90, 6, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1222670/header.jpg', 
+'https://www.youtube.com/watch?v=7D-WpFCmvRA'),
 
+('Valorant', 'Valorant es un shooter táctico por equipos donde cada agente tiene habilidades únicas. La estrategia y la puntería marcan la diferencia.', 0.00, 7, 
+'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcShiabI3_h1JSwQiQFID7JJrBOL7Iogx4J0JA&s', 
+'https://www.youtube.com/watch?v=e_E9W2vsRbQ'),
 
+('Age of Empires IV', 'Age of Empires IV regresa con intensas batallas históricas y civilizaciones únicas. Construye imperios, gestiona recursos y domina a tus rivales.', 129.99, 8, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1466860/header.jpg', 
+'https://www.youtube.com/watch?v=5TnynE3PuDE'),
 
- ALTER TABLE JUEGO
-ADD VIDEO_URL NVARCHAR(300);
+('Forza Horizon 5', 'Forza Horizon 5 es una experiencia de carreras de mundo abierto en México. Disfruta de paisajes hermosos, coches potentes y eventos emocionantes.', 229.00, 9, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg', 
+'https://www.youtube.com/watch?v=FYH9n37B7Yw'),
+
+('Stardew Valley', 'Stardew Valley te permite escapar de la ciudad y comenzar una nueva vida en el campo. Cultiva, explora cuevas y haz amigos en el pueblo.', 34.99, 6, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/413150/header.jpg', 
+'https://www.youtube.com/watch?v=ot7uXNQskhs'),
+
+('Resident Evil Village', 'Resident Evil Village combina horror y acción en un entorno espeluznante lleno de misterios y enemigos aterradores. Enfrenta tus peores pesadillas.', 189.00, 10, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1196590/header.jpg', 
+'https://www.youtube.com/watch?v=btFclZUXpzA'),
+
+('Cuphead', 'Cuphead es un juego de plataformas con estética clásica de dibujos animados. Desafiante y único, cada jefe es una obra de arte en movimiento.', 45.00, 11, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/268910/header.jpg', 
+'https://www.youtube.com/watch?v=NN-9SQXoi50'),
+
+('Hollow Knight', 'Hollow Knight es una aventura metroidvania en un mundo subterráneo oscuro. Explora, mejora tus habilidades y enfréntate a enemigos únicos.', 55.00, 1, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/367520/header.jpg', 
+'https://www.youtube.com/watch?v=UAO2urG23S4'),
+
+('Left 4 Dead 2', 'Shooter cooperativo de supervivencia contra hordas de zombis.', 29.99, 7, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/550/header.jpg', 
+'https://www.youtube.com/watch?v=PHm4lLHngwI');
+
 
 
 Select*from JUEGO
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'La versión Deluxe de Minecraft ofrece una experiencia extendida con contenido exclusivo, ideal para jugadores creativos y fanáticos de la construcción sin límites.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=MmB9b5njVbA'
-WHERE NOMBRE = 'Minecraft Deluxe';
+INSERT INTO JUEGO (NOMBRE, DESCRIPCION, PRECIO, ID_CATEGORIA, IMAGEN_URL, VIDEO_URL)
+VALUES
+('God of War', 'Aventura épica de Kratos en la mitología nórdica.', 59.99, 1, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1593500/header.jpg', 
+'https://www.youtube.com/watch?v=K0u_kAWLJOA'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Explora mundos infinitos y construye cualquier cosa, desde casas sencillas hasta castillos imponentes. Juega en modo creativo o sobrevive en modo supervivencia.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=Rla3FUlxJdE'
-WHERE NOMBRE = 'Minecraft';
+('Sekiro: Shadows Die Twice', 'Acción y sigilo con combates desafiantes en el Japón feudal.', 49.99, 5, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/814380/header.jpg', 
+'https://www.youtube.com/watch?v=rXMX4YJ7Lks'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'FIFA 23 trae consigo lo último en simulación de fútbol, con nuevas animaciones, físicas mejoradas y plantillas actualizadas para una experiencia más realista.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=o3V-GvvzjE4' -- ficticio, cambia si tienes uno real
-WHERE NOMBRE = 'FIFA 25';
+('Animal Crossing: New Horizons', 'Simulación de vida en una isla paradisíaca.', 59.99, 6, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1050000/header.jpg', 
+'https://www.youtube.com/watch?v=_3YNL0OWio0'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Among Us es un juego multijugador donde tú y tus amigos deben descubrir al impostor entre la tripulación antes de que sea demasiado tarde.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=NSJ4cESNQfE'
-WHERE NOMBRE = 'Among Us';
+('Call of Duty: Modern Warfare II', 'Shooter en primera persona con campaña y multijugador.', 69.99, 7, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1938090/header.jpg', 
+'https://www.youtube.com/watch?v=i3IsLrPeZG8'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Cyberpunk 2077 te sumerge en una metrópolis futurista donde la tecnología y el caos gobiernan. Personaliza tu personaje y explora una narrativa compleja e inmersiva.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=8X2kIfS6fb8'
-WHERE NOMBRE = 'Cyberpunk 2077';
+('Assassin’s Creed Valhalla', 'Aventura y RPG en la era de los vikingos.', 59.99, 1, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1054500/header.jpg', 
+'https://www.youtube.com/watch?v=eARa4PZn_aE'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Terraria es una aventura en 2D donde puedes excavar, construir, luchar contra enemigos y explorar un mundo vasto lleno de secretos y objetos por descubrir.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=w7uOhFTrrq0'
-WHERE NOMBRE = 'Terraria';
+('The Witcher 3: Wild Hunt', 'RPG de acción en un mundo abierto lleno de monstruos y magia.', 39.99, 11, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/292030/header.jpg', 
+'https://www.youtube.com/watch?v=c0i88t0Kacs'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Red Dead Redemption 2 es un viaje cinematográfico a través del Salvaje Oeste. Vive como forajido, cazador o explorador en un mundo abierto impresionante.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=eaW0tYpxyp0'
-WHERE NOMBRE = 'Red Dead Redemption 2';
+('Overwatch 2', 'Shooter en equipo con héroes únicos y habilidades especiales.', 39.99, 7, 
+'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF-FO8XcO5Y_n2zdntktGjs5M6Wd2cfUZrDA&s', 
+'https://www.youtube.com/watch?v=FqnKB22pOC0'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Hades es un adictivo roguelike de acción donde juegas como el hijo de Hades intentando escapar del Inframundo, con poderes de los dioses del Olimpo.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=91t0ha9x0AE'
-WHERE NOMBRE = 'Hades';
+('Genshin Impact', 'RPG de acción en mundo abierto con elementos de exploración y gacha.', 0.00, 11, 
+'https://fastcdn.hoyoverse.com/content-v2/plat/124031/5d2ba4371115d26de4c574b28311aed8_1088324040958400144.jpeg', 
+'https://www.youtube.com/watch?v=HLUY1nICQRY'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'En The Sims 4 puedes crear y controlar personas, construir sus casas y desarrollar sus historias en un mundo lleno de posibilidades y creatividad.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=7D-WpFCmvRA'
-WHERE NOMBRE = 'The Sims 4';
+('Rocket League', 'Fútbol con coches acrobáticos y competitivo.', 19.99, 9, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/252950/header.jpg', 
+'https://www.youtube.com/watch?v=SgSX3gOrj60'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Valorant es un shooter táctico por equipos donde cada agente tiene habilidades únicas. La estrategia y la puntería marcan la diferencia.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=e_E9W2vsRbQ'
-WHERE NOMBRE = 'Valorant';
+('Dead by Daylight', 'Survival horror multijugador donde un asesino persigue a los jugadores.', 29.99, 10, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/381210/header.jpg', 
+'https://www.youtube.com/watch?v=JGhIXLO3ul8'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Age of Empires IV regresa con intensas batallas históricas y civilizaciones únicas. Construye imperios, gestiona recursos y domina a tus rivales.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=5TnynE3PuDE'
-WHERE NOMBRE = 'Age of Empires IV';
+('Fall Guys: Ultimate Knockout', 'Party game de obstáculos y competencias locas.', 14.99, 4, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1097150/header.jpg', 
+'https://www.youtube.com/watch?v=AyADwdiW7rQ'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Forza Horizon 5 es una experiencia de carreras de mundo abierto en México. Disfruta de paisajes hermosos, coches potentes y eventos emocionantes.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=FYH9n37B7Yw'
-WHERE NOMBRE = 'Forza Horizon 5';
+('Diablo IV', 'RPG de acción con mazmorras, loot y combates épicos.', 69.99, 11, 
+'https://blz-contentstack-images.akamaized.net/v3/assets/blt77f4425de611b362/blt976b08da1cf9e58b/66df937c6a434d1da6691106/d4-edition_standard-edition_960.webp', 
+'https://www.youtube.com/watch?v=Ro26B394ZBM'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Stardew Valley te permite escapar de la ciudad y comenzar una nueva vida en el campo. Cultiva, explora cuevas y haz amigos en el pueblo.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=ot7uXNQskhs'
-WHERE NOMBRE = 'Stardew Valley';
+('Persona 5 Royal', 'RPG japonés con historia profunda y estilo visual único.', 49.99, 11, 
+'https://assets.nintendo.com/image/upload/c_fill,w_1200/q_auto:best/f_auto/dpr_2.0/ncom/software/switch/70010000043147/684bd8b00abcbf6dd122727a27c01a337f667bef825f4f4662efad9854b72fd4', 
+'https://www.youtube.com/watch?v=SKpSpvFCZRw'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Resident Evil Village combina horror y acción en un entorno espeluznante lleno de misterios y enemigos aterradores. Enfrenta tus peores pesadillas.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=btFclZUXpzA'
-WHERE NOMBRE = 'Resident Evil Village';
+('For Honor', 'Acción y estrategia medieval en combates multijugador.', 29.99, 5, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/304390/header.jpg', 
+'https://www.youtube.com/watch?v=zFUymXnQ5z8'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Cuphead es un juego de plataformas con estética clásica de dibujos animados. Desafiante y único, cada jefe es una obra de arte en movimiento.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=NN-9SQXoi50'
-WHERE NOMBRE = 'Cuphead';
+('Splatoon 3', 'Shooter colorido y competitivo con modos únicos de juego.', 59.99, 7, 
+'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwfouGvCi44Lr5SUxoBlX86_Mg9afRJCyyJg&s', 
+'https://www.youtube.com/watch?v=RPwwXvafJBY'),
 
-UPDATE JUEGO SET 
-DESCRIPCION = 'Hollow Knight es una aventura metroidvania en un mundo subterráneo oscuro. Explora, mejora tus habilidades y enfréntate a enemigos únicos.',
-VIDEO_URL = 'https://www.youtube.com/watch?v=UAO2urG23S4'
-WHERE NOMBRE = 'Hollow Knight';
+('Monster Hunter Rise', 'Acción y caza de monstruos en entornos épicos.', 59.99, 5, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/1446780/header.jpg', 
+'https://www.youtube.com/watch?v=a6C5lH5b-f4'),
 
-
-UPDATE JUEGO SET 
-VIDEO_URL = 'https://www.youtube.com/watch?v=PHm4lLHngwI'
-WHERE NOMBRE = 'Left 4 dead 2';
-
-
+('Dark Souls III', 'RPG de acción con combates desafiantes y mundo oscuro.', 49.99, 11, 
+'https://cdn.cloudflare.steamstatic.com/steam/apps/374320/header.jpg', 
+'https://www.youtube.com/watch?v=cWBwFhUv1-8');

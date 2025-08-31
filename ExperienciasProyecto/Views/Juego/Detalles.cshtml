@@ -135,10 +135,10 @@
         <div class="juego-info">
             <h2>@Model.NOMBRE</h2>
             <p>@Model.DESCRIPCION</p>
-            <p><strong>Categoría:</strong> @Model.CATEGORIA</p>
+            <p><strong>Categoría:</strong> @Model.NOMBRE_CATEGORIA</p>
             <p><strong>Precio:</strong> S/. @Model.PRECIO.ToString("0.00")</p>
 
-            @Html.ActionLink("🛒 Agregar al carrito", "AgregarAlCarrito", "Juego", new { id = Model.ID_JUEGO }, new { @class = "btn btn-compra mt-3" })
+            @Html.ActionLink("🛒 Agregar al carrito", "AgregarAlCarrito", "Compra", new { id = Model.ID_JUEGO }, new { @class = "btn btn-compra mt-3" })
         </div>
     </div>
 
@@ -147,8 +147,9 @@
         <div class="juego-video">
             @if (Model.VIDEO_URL.Contains("youtube.com"))
             {
-                <iframe src="https://www.youtube.com/embed/@youtubeId"
+                <iframe src="https://www.youtube.com/embed/@(youtubeId)"
                         frameborder="0" allowfullscreen></iframe>
+
             }
             else
             {

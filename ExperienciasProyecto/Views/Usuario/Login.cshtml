@@ -1,0 +1,102 @@
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<!-- ESTILOS DEL LOGIN -->
+<style>
+    keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    body {
+        background-color: #0b0c10;
+        font-family: 'Segoe UI', sans-serif;
+        color: #ffffff;
+    }
+
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 85vh;
+    }
+
+    .login-card {
+        background-color: #1f2833;
+        border-radius: 12px;
+        padding: 40px;
+        width: 100%;
+        max-width: 400px;
+        box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+        animation: fadeInDown 0.7s ease;
+    }
+
+    .login-card h2 {
+        text-align: center;
+        margin-bottom: 25px;
+        color: #66fcf1;
+    }
+
+    .form-control {
+        background-color: #c5c6c7;
+        color: #0b0c10;
+        border: none;
+        padding: 12px;
+        margin-bottom: 15px;
+        border-radius: 6px;
+    }
+
+    .btn-primary {
+        background-color: #45a29e;
+        border: none;
+        width: 100%;
+        padding: 12px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #66fcf1;
+        color: #0b0c10;
+    }
+
+    .alert-danger {
+        background-color: #c0392b;
+        border: none;
+        padding: 10px;
+        color: white;
+        border-radius: 5px;
+        text-align: center;
+        margin-top: 15px;
+    }
+</style>
+
+<!-- FORMULARIO -->
+<div class="login-container">
+    <div class="login-card">
+        <h2>🔐 Iniciar Sesión</h2>
+
+        @using (Html.BeginForm("Login", "Usuario", FormMethod.Post))
+        {
+            <label for="correo">Correo:</label>
+            @Html.TextBox("correo", null, new { @class = "form-control", placeholder = "ejemplo@email.com" })
+
+            <label for="contrasena">Contraseña:</label>
+            @Html.Password("contrasena", null, new { @class = "form-control", placeholder = "••••••••" })
+
+            <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+
+          
+            if (ViewBag.Mensaje != null)
+            {
+                <div class="alert-danger">@ViewBag.Mensaje</div>
+            }
+
+            <p class="text-center mt-4 text-muted">
+                ¿No tienes una cuenta?<br />
+                @Html.ActionLink("Regístrate aquí", "RegistrarUsu", "Usuario", null, new { @class = "text-info" })
+            </p>
+        }
+    </div>
+</div>

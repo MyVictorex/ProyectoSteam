@@ -1,0 +1,82 @@
+﻿@model ExperienciasProyecto.Models.PerfilViewModel
+
+@{
+    ViewBag.Title = "Mi Perfil";
+}
+
+<div class="container mt-5">
+    <div class="card p-4 shadow-sm mb-4">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                <img src="https://via.placeholder.com/150" class="img-fluid rounded-circle" alt="Imagen de Perfil" />
+            </div>
+            <div class="col-md-9">
+                <h2 class="display-4">@Model.Usuario.NOMBRE</h2>
+                <p class="lead text-muted">Correo: @Model.Usuario.CORREO</p>
+                <p><strong>Rol:</strong> @Model.Usuario.ROL</p>
+                <p class="h4 mt-3">Total Gastado: <span class="text-success">$@Model.TotalGastado.ToString("0.00")</span></p>
+            </div>
+        </div>
+    </div>
+
+    @* Historial de Compras *@
+    <h3 class="mt-5 mb-3">Historial de Compras</h3>
+    @if (Model.HistorialDeCompras != null && Model.HistorialDeCompras.Any())
+    {
+        <div class="table-responsive">
+            <table class="table table-hover table-striped">
+                <thead class="thead-dark">
+                    <tr>
+                        <th>Compra N°</th>
+                        <th>Fecha</th>
+                        <th>Juego</th>
+                        <th>Precio</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.HistorialDeCompras)
+                    {
+                        <tr>
+                            <td>@item.ID_COMPRA</td>
+                            <td>@item.FECHA.ToShortDateString()</td>
+                            <td>@item.NOMBRE_JUEGO</td>
+                            <td>$@item.PRECIO_UNITARIO.ToString("0.00")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-info">
+            ¡Aún no has comprado ningún juego!
+        </div>
+    }
+
+    @* Recomendaciones *@
+    <h3 class="mt-5 mb-3">Juegos Recomendados para ti</h3>
+    @if (Model.Recomendaciones != null && Model.Recomendaciones.Any())
+    {
+        <div class="row">
+            @foreach (var rec in Model.Recomendaciones)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100 shadow-sm">
+                        <img src="@rec.IMAGEN_URL" class="card-img-top" alt="@rec.NOMBRE_JUEGO" style="height: 200px; object-fit: cover;" />
+                        <div class="card-body">
+                            <h5 class="card-title">@rec.NOMBRE_JUEGO</h5>
+                            <p class="card-text text-muted">@rec.MOTIVO</p>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No hay recomendaciones disponibles por el momento.
+        </div>
+    }
+</div>

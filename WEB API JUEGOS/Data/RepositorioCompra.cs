@@ -33,6 +33,7 @@ namespace WEB_API_JUEGOS.Data
 
                 cmd.ExecuteNonQuery();
                 idCompra = (int)outputParam.Value;
+                cn.Close();
             }
             return idCompra;
         }
@@ -49,6 +50,7 @@ namespace WEB_API_JUEGOS.Data
                 cmd.Parameters.AddWithValue("@PRECIO_UNITARIO", precio);
 
                 int filas = cmd.ExecuteNonQuery();
+                cn.Close();
                 return filas > 0;
             }
         }

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("WEB API JUEGOS")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3dc115df2c6022182d6b39db97717bad2c93e22c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1552771e46dced178b06f4f31ac486d30c12c019")]
 [assembly: System.Reflection.AssemblyProductAttribute("WEB API JUEGOS")]
 [assembly: System.Reflection.AssemblyTitleAttribute("WEB API JUEGOS")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
